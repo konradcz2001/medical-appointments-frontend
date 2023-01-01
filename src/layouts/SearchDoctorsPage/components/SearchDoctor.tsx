@@ -7,33 +7,33 @@ export const SearchDoctor: React.FC<{ doctor: Doctor }> = (props) => {
             <div className='row g-0'>
                 <div className='col-md-2'>
                     <div className='d-none d-lg-block'>
-                        {props.doctor.profileImg ?
-                            <img src={props.doctor.profileImg}
+                        {props.doctor.avatar ?
+                            <img src={props.doctor.avatar}
                                 width='123'
-                                height='196'
-                                alt='Book'
+                                alt='avatar'
+                                className="img-fluid"
                             />
                             :
                             <img src={require('../../../Images/avatar.png')}
                                 width='123'
-                                height='196'
-                                alt='Book'
+                                alt='avatar'
+                                className="img-fluid"
                             />
                         }
                     </div>
                     <div className='d-lg-none d-flex justify-content-center 
                         align-items-center'>
-                        {props.doctor.profileImg ?
-                            <img src={props.doctor.profileImg}
+                        {props.doctor.avatar ?
+                            <img src={props.doctor.avatar}
                                 width='123'
-                                height='196'
-                                alt='Book'
+                                alt='avatar'
+                                className="img-fluid"
                             />
                             :
                             <img src={require('../../../Images/avatar.png')}
                                 width='123'
-                                height='196'
-                                alt='Book'
+                                alt='avatar'
+                                className="img-fluid"
                             />
                         }
                     </div>
@@ -41,13 +41,15 @@ export const SearchDoctor: React.FC<{ doctor: Doctor }> = (props) => {
                 <div className='col-md-6'>
                     <div className='card-body'>
                         <h5 className='card-title'>
-                            {props.doctor.name}
+                            {props.doctor.firstName} {props.doctor.lastName}
                         </h5>
                         <h4>
-                            {props.doctor.surname}
+                            City: {props.doctor.city}   Specializations: {
+                                props.doctor.specializations.map(specialization => specialization.specialization + ' ')
+                            }
                         </h4>
                         <p className='card-text'>
-                            {props.doctor.specialization.specialization}
+                            {props.doctor.profileDescription}
                         </p>
                     </div>
                 </div>

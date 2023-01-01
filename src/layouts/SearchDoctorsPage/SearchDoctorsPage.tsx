@@ -43,9 +43,21 @@ export const SearchDoctorsPage = () => {
             for(const key in responseData){
                 loadedDoctors.push(new Doctor(
                     responseData[key].id, 
-                    responseData[key].name, 
-                    responseData[key].surname, 
-                    responseData[key].specialization)
+                    responseData[key].firstName, 
+                    responseData[key].lastName, 
+                    responseData[key].email,
+                    responseData[key].phoneNumber,
+                    responseData[key].address.country,
+                    responseData[key].address.state,
+                    responseData[key].address.city,
+                    responseData[key].address.street,
+                    responseData[key].address.number,
+                    responseData[key].address.zipCode,
+                    responseData[key].isVerified,
+                    responseData[key].avatar, 
+                    responseData[key].profileDescription, 
+                    responseData[key].specializations, 
+                    responseData[key].leaves)
                 );
             }
 
