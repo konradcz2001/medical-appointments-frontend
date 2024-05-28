@@ -2,6 +2,9 @@
     --mainOpacity: rgba(0, 0, 0, 0.55);
 }
 
+
+
+
 .header {
     background-image: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7) ), url("./Images/welcome.jpg");
     opacity: var(--mainOpacity);
@@ -19,6 +22,11 @@
 
 .main-color {
 background-color: #0ea889 ;
+}
+
+.my-btn {
+    background-color: #0ea889 ;
+    color: white;
 }
 
 .about-us-container {

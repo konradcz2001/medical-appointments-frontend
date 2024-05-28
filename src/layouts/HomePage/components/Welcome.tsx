@@ -9,7 +9,8 @@ export const Welcome = () => {
                     <h1 className='display-5 fw-bold'>Book your medical appointment</h1>
                     <p className='col-md-8 fs-4'>Find the right specialist for your needs</p>
                     <Link type='button' className='btn main-color btn-lg text-white' to='/search'>
-                        Search Doctors</Link>
+                        Search Doctors <i className="bi bi-search"></i>
+                    </Link>
                 </div>
             </div>
         </div>
