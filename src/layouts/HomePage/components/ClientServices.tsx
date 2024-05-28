@@ -1,6 +1,9 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-export const ClientServices = () => {
+export const ClientServices = (props: any) => {
+
+
     return (
         <div className='container my-5'>
             <div className='row p-4 align-items-center border shadow-lg'>
@@ -13,9 +16,16 @@ export const ClientServices = () => {
                         send us a message. We will try to help you.
                     </p>
                     <div className='d-grid gap-2 justify-content-md-start mb-4 mb-lg-3'>
-                        <Link className='btn main-color btn-lg text-white' to='#'>
-                            Sing up
-                        </Link>
+                        {props.isLoggedIn ? (
+                            <Link className='btn my-btn' to='/message'>
+                                Send us a message <i className="bi bi-send"></i>
+                            </Link>
+                        ) : (
+                            <Link className='btn my-btn' to='/register'>
+                                Sing up <i className="bi bi-person-plus"></i>
+                            </Link>
+                        )}
+
                     </div>
                 </div>
                 <div className='col-lg-4 offset-lg-1 shadow-lg'>

@@ -3,13 +3,15 @@ import { Doctor } from "../../models/Doctor";
 import { Pagination } from "../Utils/Pagination";
 import { SpinnerLoading } from "../Utils/SpinnerLoading";
 import { SearchDoctor } from "./components/SearchDoctor";
+import { Specialization } from "../../models/Specialization";
 
 export const SearchDoctorsPage = () => {
     const [doctors, setDoctors] = useState<Doctor[]>([]);
+    const [specializations, setSpecialization] = useState<Specialization[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
-    const [doctorsPerPage, setDoctorsPerPage] = useState(5);
+    const [doctorsPerPage] = useState(10);
     const [totalAmountOfDoctors, setTotalAmountOfDoctors] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const [search, setSearch] = useState('');
@@ -20,17 +22,27 @@ export const SearchDoctorsPage = () => {
     useEffect(() => {
         const fetchDoctors = async () => {
             const baseUrl: string = "http://localhost:8080/doctors";
-            let url: string = '';
+            const pagination: string = `page=${currentPage - 1}&size=${doctorsPerPage}`;
+            let url: string;
 
-            if(searchUrl === ''){
-                url = `${baseUrl}?page=${currentPage - 1}&size=${doctorsPerPage}`;
-            } else{
-                url = baseUrl + searchUrl;
+            if(searchUrl === '' && specializationSelection === 'Specialization'){
+                url = `${baseUrl}?${pagination}`;
+            }
+            else if(specializationSelection === 'Specialization'){
+                url = `${baseUrl}${searchUrl}&${pagination}`;
+                console.log(url);
+            } 
+            else if (searchUrl === ''){
+                url = `${baseUrl}?specialization=${specializationSelection}&${pagination}`;
+                console.log(url);
+            }
+            else{
+                url = `${baseUrl}${searchUrl}&specialization=${specializationSelection}&${pagination}`;
             }
 
             const response = await fetch(url);
 
-            if(!response.ok){
+            if(!response.ok && response.status !== 404){
                 throw new Error("Something went wrong!");
             }
 
@@ -43,21 +55,68 @@ export const SearchDoctorsPage = () => {
             for(const key in responseData){
                 loadedDoctors.push(new Doctor(
                     responseData[key].id, 
-                    responseData[key].name, 
-                    responseData[key].surname, 
-                    responseData[key].specialization)
+                    responseData[key].firstName, 
+                    responseData[key].lastName, 
+                    responseData[key].email,
+                    responseData[key].role,
+                    responseData[key].address.country,
+                    responseData[key].address.state,
+                    responseData[key].address.city,
+                    responseData[key].address.street,
+                    responseData[key].address.houseNumber,
+                    responseData[key].address.zipCode,
+                    responseData[key].isVerified,
+                    responseData[key].avatar, 
+                    responseData[key].profileDescription,
+                    responseData[key].specializations)
                 );
             }
 
             setDoctors(loadedDoctors);
             setIsLoading(false);
         };
+
         fetchDoctors().catch((error: any) => {
             setIsLoading(false);
             setHttpError(error.message);
         });
+
         window.scrollTo(0, 0);
-    }, [currentPage, searchUrl]);
+    }, [currentPage, searchUrl, specializationSelection]);
+
+    useEffect(() => {
+
+        const fetchSpecializations = async () => {
+            const url: string = "http://localhost:8080/doctors/specializations";
+
+            const response = await fetch(url);
+
+            if(!response.ok && response.status !== 404){
+                throw new Error("Something went wrong!");
+            }
+
+            const responseJson = await response.json();
+            const responseData = responseJson.content;
+            const loadedSpecializations: Specialization[] = [];
+
+            for(const key in responseData){
+                loadedSpecializations.push(new Specialization(
+                    responseData[key].id, 
+                    responseData[key].specialization)
+                );
+            }
+
+            setSpecialization(loadedSpecializations);
+            setIsLoading(false);
+        };
+
+        fetchSpecializations().catch((error: any) => {
+            setIsLoading(false);
+            setHttpError(error.message);
+        });
+
+
+    }, []);
 
     if(isLoading){
         return(
@@ -77,29 +136,15 @@ export const SearchDoctorsPage = () => {
         if(search === ''){
             setSearchUrl('');
         } else {
-            setSearchUrl(`/search/findByTitleContaining?title=${search}&page=0&size=${doctorsPerPage}`);
+            setSearchUrl(`/search?word=${search}`);
         }
     }
 
-    const specializationField = (value: string) => {
-        if (
-            value.toLowerCase() === 'fe' || 
-            value.toLowerCase() === 'be' || 
-            value.toLowerCase() === 'data' || 
-            value.toLowerCase() === 'devops'
-        ) {
-            setSpecializationSelection(value);
-            setSearchUrl(`/search/findByCategory?category=${value}&page=0&size=${doctorsPerPage}`)
-        } else {
-            setSpecializationSelection('All');
-            setSearchUrl(`?page=0&size=${doctorsPerPage}`)
-        }
-    }
 
     const indexOfLastDoctor: number = currentPage * doctorsPerPage;
     const indexOfFirstDoctor: number = indexOfLastDoctor - doctorsPerPage;
     let lastItem = doctorsPerPage * currentPage <= totalAmountOfDoctors ?
-     doctorsPerPage * currentPage : totalAmountOfDoctors;
+        doctorsPerPage * currentPage : totalAmountOfDoctors;
 
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
     
@@ -113,9 +158,9 @@ export const SearchDoctorsPage = () => {
                                 <input className='form-control me-2' type='search'
                                     placeholder='Search' aria-labelledby='Search'
                                     onChange={e => setSearch(e.target.value)} />
-                                <button className='btn btn-outline-success'
+                                <button className='btn my-btn'
                                     onClick={() => searchHandleChange()}>
-                                    Search
+                                    <i className="bi bi-search"></i>
                                 </button>
                             </div>
                         </div>
@@ -126,32 +171,24 @@ export const SearchDoctorsPage = () => {
                                     aria-expanded='false'>
                                     {specializationSelection}
                                 </button>
-                                <ul className='dropdown-menu' aria-labelledby='dropdownMenuButton1'>
-                                    <li onClick={() => specializationField('All')}>
+                                <ul className='dropdown-menu' aria-labelledby='dropdownMenuButton1' style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                                    <li onClick={() => setSpecializationSelection('Specialization')}>
                                         <a className='dropdown-item' href='#'>
-                                            All
+                                            ALL
                                         </a>
                                     </li>
-                                    <li onClick={() => specializationField('FE')}>
-                                        <a className='dropdown-item' href='#'>
-                                            s1
-                                        </a>
-                                    </li>
-                                    <li onClick={() => specializationField('BE')}>
-                                        <a className='dropdown-item' href='#'>
-                                            s2
-                                        </a>
-                                    </li>
-                                    <li onClick={() => specializationField('Data')}>
-                                        <a className='dropdown-item' href='#'>
-                                            s3
-                                        </a>
-                                    </li>
-                                    <li onClick={() => specializationField('DevOps')}>
-                                        <a className='dropdown-item' href='#'>
-                                            s4
-                                        </a>
-                                    </li>
+                                    {
+                                    specializations.map(spec => {
+                                        return(
+                                            <li key={spec.id} onClick={() => setSpecializationSelection(spec.specialization.toLocaleUpperCase())}>
+                                                <a className='dropdown-item' href='#'>
+                                                {spec.specialization.toUpperCase()}
+                                                </a>
+                                            </li>
+                                        );
+                                    })
+                                    }
+
                                 </ul>
                             </div>
                         </div>
@@ -165,7 +202,7 @@ export const SearchDoctorsPage = () => {
                                 {indexOfFirstDoctor + 1} to {lastItem} of {totalAmountOfDoctors} items:
                             </p>
                             {doctors.map(doctor => (
-                                <SearchDoctor doctor={doctor} key={doctor.id} />
+                                <SearchDoctor doctor={doctor} searchTerm={search} key={doctor.id} />
                             ))}
                         </>
                         :

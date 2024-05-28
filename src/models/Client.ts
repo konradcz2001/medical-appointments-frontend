@@ -1,9 +1,17 @@
-export class Client{
+import ReviewModel from "./ReviewModel";
+import { UserData } from "./UserData";
+
+export class Client extends UserData{
 
     constructor(
-        public id: number,
-        public name: string,
-        public surname: string){
-
+        id: number,
+        firstName: string,
+        lastName: string,
+        email: string,
+        role: string,
+        password?: string,
+        public reviews?: ReviewModel[]
+    ){
+            super(id, firstName, lastName, email, password as string, role);
     }
 }

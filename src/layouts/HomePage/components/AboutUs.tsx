@@ -28,7 +28,7 @@ export const AboutUs = () => {
                                 The website has a rating system. Clients can leave an opinion on a given specialist. 
                                 In addition, if the doctor has some documents confirming his skills, he can verify himself. 
                                 Our team checks the credibility of documents. Successful verification will be confirmed 
-                                by the verification stamp placed next to the doctor's profile.
+                                by the verification stamp <i className="bi bi-patch-check"></i> placed next to the doctor's name.
                             </p>
                         </div>
                     </div>
