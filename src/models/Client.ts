@@ -4,11 +4,11 @@ import { UserData } from "./UserData";
 export class Client extends UserData{
 
     constructor(
-        id: number,
-        firstName: string,
-        lastName: string,
-        email: string,
-        role: string,
+        id?: number,
+        firstName?: string,
+        lastName?: string,
+        email?: string,
+        role?: string,
         password?: string,
         public reviews?: ReviewModel[]
     ){

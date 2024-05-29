@@ -17,7 +17,7 @@ export const ClientServices = (props: any) => {
                     </p>
                     <div className='d-grid gap-2 justify-content-md-start mb-4 mb-lg-3'>
                         {props.isLoggedIn ? (
-                            <Link className='btn my-btn' to='/message'>
+                            <Link className='btn my-btn' to='/contact'>
                                 Send us a message <i className="bi bi-send"></i>
                             </Link>
                         ) : (

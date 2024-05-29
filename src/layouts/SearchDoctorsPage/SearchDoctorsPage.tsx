@@ -4,6 +4,7 @@ import { Pagination } from "../Utils/Pagination";
 import { SpinnerLoading } from "../Utils/SpinnerLoading";
 import { SearchDoctor } from "./components/SearchDoctor";
 import { Specialization } from "../../models/Specialization";
+import { Address } from "../../models/Address";
 
 export const SearchDoctorsPage = () => {
     const [doctors, setDoctors] = useState<Doctor[]>([]);
@@ -52,24 +53,32 @@ export const SearchDoctorsPage = () => {
             setTotalPages(responseJson.totalPages);
             const loadedDoctors: Doctor[] = [];
 
-            for(const key in responseData){
-                loadedDoctors.push(new Doctor(
-                    responseData[key].id, 
-                    responseData[key].firstName, 
-                    responseData[key].lastName, 
-                    responseData[key].email,
-                    responseData[key].role,
-                    responseData[key].address.country,
-                    responseData[key].address.state,
-                    responseData[key].address.city,
-                    responseData[key].address.street,
-                    responseData[key].address.houseNumber,
-                    responseData[key].address.zipCode,
-                    responseData[key].isVerified,
-                    responseData[key].avatar, 
-                    responseData[key].profileDescription,
-                    responseData[key].specializations)
-                );
+            for (const key in responseData) {
+            
+
+                const loadedDoctor: Doctor = {
+
+                    id: responseData[key].id,
+                    firstName: responseData[key].firstName,
+                    lastName: responseData[key].lastName,
+                    email: responseData[key].email,
+                    role: responseData[key].role,
+                    address:{
+                    country: responseData[key].address.country,
+                    state: responseData[key].address.state,
+                    city: responseData[key].address.city,
+                    street: responseData[key].address.street,
+                    houseNumber: responseData[key].address.houseNumber,
+                    zipCode: responseData[key].address.zipCode
+                    },
+                    isVerified: responseData[key].isVerified,
+                    avatar: responseData[key].avatar,
+                    profileDescription: responseData[key].profileDescription,
+                    specializations: responseData[key].specializations
+    
+                };
+
+                loadedDoctors.push(loadedDoctor);
             }
 
             setDoctors(loadedDoctors);
@@ -82,7 +91,7 @@ export const SearchDoctorsPage = () => {
         });
 
         window.scrollTo(0, 0);
-    }, [currentPage, searchUrl, specializationSelection]);
+    }, [currentPage, doctorsPerPage, searchUrl, specializationSelection]);
 
     useEffect(() => {
 

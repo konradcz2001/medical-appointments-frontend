@@ -51,12 +51,14 @@ export const DoctorProfilePage = () => {
                 lastName: responseJson.lastName,
                 email: responseJson.email,
                 role: responseJson.role,
+                address:{
                 country: responseJson.address.country,
                 state: responseJson.address.state,
                 city: responseJson.address.city,
                 street: responseJson.address.street,
-                number: responseJson.address.houseNumber,
-                zipCode: responseJson.address.zipCode,
+                houseNumber: responseJson.address.houseNumber,
+                zipCode: responseJson.address.zipCode
+                },
                 isVerified: responseJson.isVerified,
                 avatar: responseJson.avatar,
                 profileDescription: responseJson.profileDescription,
@@ -160,19 +162,11 @@ export const DoctorProfilePage = () => {
         <div>
             <div className='container d-none d-lg-block'>
                 <div className='d-flex align-items-center mt-5'>
-                    <div>
+                    <div className='div-img'>
                         {doctor?.avatar ?
-                            <img src={doctor?.avatar} 
-                                width='256'
-                                alt='avatar'
-                                className="img-fluid"
-                            />
+                            <img src={`data:image/png;base64,${doctor.avatar}`} alt='avatar' className="img-fluid avatar-img" />
                             :
-                            <img src={require('../../Images/avatar.png')}
-                                width='256'
-                                alt='avatar'
-                                className="img-fluid"
-                            />
+                            <img src={require('../../Images/avatar.png')} alt='avatar' className="img-fluid avatar-img" />
                         }
                     </div>
                     <div>
@@ -191,12 +185,13 @@ export const DoctorProfilePage = () => {
                             }
                             </h5>
                             
-                            {doctor?.country || doctor?.state || doctor?.zipCode || doctor?.city || doctor?.street || doctor?.number ? <i className="bi bi-geo-alt"></i> : <></>}                                                                                                                                               
-                            {doctor?.state ? ' | ' + doctor.state : <></>} 
-                            {doctor?.zipCode ? ' | ' + doctor.zipCode : <></>} 
-                            {doctor?.city ? ' | ' + doctor.city : <></>} 
-                            {doctor?.street ? ' | ' + doctor.street : <></>} 
-                            {doctor?.number ? ' | ' + doctor.number : <></>} 
+                            {doctor?.address.country || doctor?.address.state || doctor?.address.zipCode || doctor?.address.city || doctor?.address.street || doctor?.address.houseNumber ? <i className="bi bi-geo-alt"></i> : <></>}                                                                                                                                               
+                            {doctor?.address.country ? ' | ' + doctor.address.country : <></>} 
+                            {doctor?.address.state ? ' | ' + doctor.address.state : <></>}
+                            {doctor?.address.zipCode ? ' | ' + doctor.address.zipCode : <></>} 
+                            {doctor?.address.city ? ' | ' + doctor.address.city : <></>} 
+                            {doctor?.address.street ? ' | ' + doctor.address.street : <></>} 
+                            {doctor?.address.houseNumber ? ' | ' + doctor.address.houseNumber : <></>} 
 
                         </div>
                     </div>
@@ -212,19 +207,13 @@ export const DoctorProfilePage = () => {
             </div>
             <div className='container d-lg-none mt-5'>
                 <div className='d-flex justify-content-center alighn-items-center'>
-                    {doctor?.avatar ?
-                        <img src={doctor?.avatar} 
-                            width='256'
-                            alt='avatar'
-                            className="img-fluid"
-                        />
-                        :
-                        <img src={require('../../Images/avatar.png')}
-                            width='256'
-                            alt='avatar'
-                            className="img-fluid"
-                        />
-                    }
+                    <div className='div-img'>
+                        {doctor?.avatar ?
+                            <img src={`data:image/png;base64,${doctor.avatar}`} alt='avatar' className="img-fluid avatar-img" />
+                            :
+                            <img src={require('../../Images/avatar.png')} alt='avatar' className="img-fluid avatar-img" />
+                        }
+                    </div>
                 </div>
                 <div className='mt-4'>
                     <div className='ml-2'>
@@ -243,12 +232,12 @@ export const DoctorProfilePage = () => {
                             }
                             </h5>
                             
-                            {doctor?.country || doctor?.state || doctor?.zipCode || doctor?.city || doctor?.street || doctor?.number ? 'L' : <></>}                                                                                                                                               
-                            {doctor?.state ? ' | ' + doctor.state : <></>} 
-                            {doctor?.zipCode ? ' | ' + doctor.zipCode : <></>} 
-                            {doctor?.city ? ' | ' + doctor.city : <></>} 
-                            {doctor?.street ? ' | ' + doctor.street : <></>} 
-                            {doctor?.number ? ' | ' + doctor.number : <></>} 
+                            {doctor?.address.country || doctor?.address.state || doctor?.address.zipCode || doctor?.address.city || doctor?.address.street || doctor?.address.houseNumber ? 'L' : <></>}                                                                                                                                               
+                            {doctor?.address.state ? ' | ' + doctor.address.state : <></>} 
+                            {doctor?.address.zipCode ? ' | ' + doctor.address.zipCode : <></>} 
+                            {doctor?.address.city ? ' | ' + doctor.address.city : <></>} 
+                            {doctor?.address.street ? ' | ' + doctor.address.street : <></>} 
+                            {doctor?.address.houseNumber ? ' | ' + doctor.address.houseNumber : <></>} 
                     </div>
                 </div>
                 <CheckoutAndReviewBox doctor={doctor} mobile={true} currentLoansCount={currentLoansCount} 
