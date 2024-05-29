@@ -20,7 +20,6 @@ export const RegisterPage = (props: any) => {
     event.preventDefault();
 
     try {
-      // Tutaj dodaj logikę wysłania żądania rejestracji do backendu
       const response = await fetch('http://localhost:8080/register', {
         method: 'POST',
         headers: {

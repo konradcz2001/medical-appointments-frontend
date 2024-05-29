@@ -34,11 +34,18 @@ export const Navbar = (props: any) => {
           </ul>
           <ul className='navbar-nav ms-auto'>
             {props.isLoggedIn ? (
-              <li className='nav-item m-1'>
-                <button type='button' className='btn btn-outline-light' onClick={handleLogout}>
-                  Log Out <i className="bi bi-box-arrow-left"></i>
-                </button>
-              </li>
+              <>
+                <li className='nav-item m-1'>
+                    <Link type='button' className='btn btn-outline-light' to='/profile'>
+                      <i className="bi bi-gear"></i>
+                    </Link>
+                </li>
+                <li className='nav-item m-1'>
+                    <button type='button' className='btn btn-outline-light' onClick={handleLogout}>
+                      Log Out <i className="bi bi-box-arrow-left"></i>
+                    </button>
+                </li>
+              </>
             ) : (
               <li className='nav-item m-1'>
                 <Link type='button' className='btn btn-outline-light' to='/login'>
