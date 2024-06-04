@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Link, NavLink, useHistory } from "react-router-dom";
+import React from 'react';
+import { Link, NavLink } from "react-router-dom";
+import { useAuth } from '../../security/AuthContext';
 
-export const Navbar = (props: any) => {
-  //const [isLoggedIn, setIsLoggedIn] = useState(false);
-  //const history = useHistory();
+export const Navbar = () => {
+  const { user, logout } = useAuth();
 
   const handleLogout = () => {
-    localStorage.removeItem('jwt');
-    props.setIsLoggedIn(false);
-    //history.push('/home');
+    logout();
     window.location.replace("/home");
   };
 
@@ -33,19 +31,29 @@ export const Navbar = (props: any) => {
             </li>
           </ul>
           <ul className='navbar-nav ms-auto'>
-            {props.isLoggedIn ? (
-              <>
+            
+              {user && user?.role !== 'DOCTOR' && 
                 <li className='nav-item m-1'>
-                    <Link type='button' className='btn btn-outline-light' to='/profile'>
+                    <Link type='button' className='btn btn-outline-light' to='/client-profile'>
                       <i className="bi bi-gear"></i>
                     </Link>
                 </li>
+              }
+              {user && user?.role === 'DOCTOR' &&
+                <li className='nav-item m-1'>
+                    <Link type='button' className='btn btn-outline-light' to='/doctor-profile'>
+                      <i className="bi bi-gear"></i>
+                    </Link>
+                </li>
+              }
+
+            {user ? (
                 <li className='nav-item m-1'>
                     <button type='button' className='btn btn-outline-light' onClick={handleLogout}>
                       Log Out <i className="bi bi-box-arrow-left"></i>
                     </button>
                 </li>
-              </>
+              
             ) : (
               <li className='nav-item m-1'>
                 <Link type='button' className='btn btn-outline-light' to='/login'>

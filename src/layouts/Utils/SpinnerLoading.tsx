@@ -1,3 +1,5 @@
+import React from "react";
+
 export const SpinnerLoading = () => {
     return (
         <div className='container my-5 mx-auto d-flex justify-content-center' 

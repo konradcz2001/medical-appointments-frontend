@@ -1,20 +1,19 @@
-// RegistrationForm.tsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export const RegisterPage = (props: any) => {
+export const RegisterPage = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState<string>('CLIENT'); // Domyślnie wybierany jest klient
+  const [role, setRole] = useState<string>('CLIENT');
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (props.isLoggedIn) {
-      window.location.replace('/home');
-    }
-  }, [props.isLoggedIn]);
+  // useEffect(() => {
+  //   if (props.isLoggedIn) {
+  //     window.location.replace('/home');
+  //   }
+  // }, [props.isLoggedIn]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

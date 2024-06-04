@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useAuth } from '../../security/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
-export const LoginPage = (props: any) => {
+export const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (props.isLoggedIn) {
-      window.location.replace('/home');
-    }
-  }, [props.isLoggedIn]);
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -25,26 +22,19 @@ export const LoginPage = (props: any) => {
       });
 
       if (!response.ok) {
-        const errorData: any = await response.json();
+        const errorData = await response.json();
         throw new Error(errorData.message);
       }
 
-
       const data = await response.json();
-
       const jwt = data.token;
 
       if (jwt) {
-        localStorage.setItem('jwt', jwt);
+        login(jwt);
+        navigate('/home');
       } else {
         throw new Error('Token not found in the response');
       }
-
-      console.log('Login successful');
-      window.location.replace('/home');
-
-
-
     } catch (error: any) {
       setError(error.message || 'Something went wrong');
     }
@@ -66,9 +56,9 @@ export const LoginPage = (props: any) => {
             <button type="submit" className="btn my-btn me-3">
               Log In <i className="bi bi-box-arrow-in-right"></i>
             </button>
-            <Link type='button' className='btn my-btn' to='/register'>
+            <button type='button' className='btn my-btn' onClick={() => navigate('/register')}>
               Sign Up <i className="bi bi-person-plus"></i>
-            </Link>
+            </button>
             {error && <p className="text-danger">{error}</p>}
           </form>
         </div>

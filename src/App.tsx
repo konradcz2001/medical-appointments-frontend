@@ -1,4 +1,4 @@
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { DoctorProfilePage } from './layouts/DoctorProfilePage/DoctorProfilePage';
 import { ReviewListPage } from './layouts/DoctorProfilePage/ReviewListPage/ReviewListPage';
@@ -8,98 +8,34 @@ import { Navbar } from './layouts/NavbarAndFooter/Navbar';
 import { SearchDoctorsPage } from './layouts/SearchDoctorsPage/SearchDoctorsPage';
 import { LoginPage } from './layouts/LoginPage/LoginPage';
 import { RegisterPage } from './layouts/RegisterPage/RegisterPage';
-import { useEffect, useState } from 'react';
-import { EditProfilePage } from './layouts/EditProfilePage/EditProfilePage';
 import { ContactPage } from './layouts/ContactPage/ContactPage';
-// import jwtDecode from 'jwt-decode';
-// import jwt from 'jsonwebtoken';
+import { EditDoctorProfilePage } from './layouts/EditDoctorProfilePage/EditDoctorProfilePage';
+import { EditClientProfilePage } from './layouts/EditClientProfilePage/EditClientProfilePage';
+import { AuthProvider } from './security/AuthContext';
+import PrivateRoute from './security/PrivateRoute';
+import PublicRoute from './security/PublicRoute';
 
 export const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem('jwt');
-    if (token) {
-      setIsLoggedIn(true);
-    }
-  }, [setIsLoggedIn]);
-  // useEffect(() => {
-  //   const token = localStorage.getItem('jwt');
-  //   if (token) {
-  //     try {
-  //       const decodedToken = jwtDecode(token);
-  //       const currentTime = Date.now() / 1000; // Czas w sekundach
-  //       if (decodedToken.exp && decodedToken.exp > currentTime) {
-  //         // Weryfikacja podpisu tokena
-  //         const secret = 'your-256-bit-secret'; // Klucz tajny użyty do podpisania tokena
-  //         jwt.verify(token, secret, (err: any, verifiedToken: any) => {
-  //           if (err) {
-  //             console.error('Token verification failed:', err);
-  //             setIsLoggedIn(false);
-  //           } else {
-  //             // Możesz sprawdzić dodatkowe dane, takie jak uprawnienia
-  //             console.log('Verified token:', verifiedToken);
-  //             setIsLoggedIn(true);
-  //           }
-  //         });
-  //       } else {
-  //         localStorage.removeItem('jwt'); // Usunięcie wygasłego tokena
-  //         setIsLoggedIn(false);
-  //       }
-  //     } catch (error) {
-  //       console.error('Invalid token:', error);
-  //       setIsLoggedIn(false);
-  //     }
-  //   } else {
-  //     setIsLoggedIn(false);
-  //   }
-  // }, [setIsLoggedIn]);
-
-console.log("isloged: " + isLoggedIn);
-
   return (
-    <div className='d-flex flex-column min-vh-100'>
-      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-      <div className='flex-grow-1'>
-        <Switch>
-          <Route path='/' exact>
-            <Redirect to='/home' />
-          </Route>
-
-          <Route path='/home'>
-            <HomePage isLoggedIn={isLoggedIn} />
-          </Route>
-
-          <Route path='/login'>
-            <LoginPage isLoggedIn={isLoggedIn} />
-          </Route>
-
-          <Route path='/register'>
-            <RegisterPage isLoggedIn={isLoggedIn} />
-          </Route>
-
-          <Route path='/contact'>
-            <ContactPage isLoggedIn={isLoggedIn} email={"email@email"} />
-          </Route>
-
-          <Route path='/profile'>
-            <EditProfilePage isLoggedIn={isLoggedIn} email={"email@email"} />
-          </Route>
-
-          <Route path='/search'>
-            <SearchDoctorsPage />
-          </Route>
-
-          <Route path='/doctor/:doctorId'>
-            <DoctorProfilePage />
-          </Route>
-
-          <Route path='/reviewList/:doctorId'>
-            <ReviewListPage />
-          </Route>
-        </Switch>
+    <AuthProvider>
+      <div className='d-flex flex-column min-vh-100'>
+        <Navbar />
+        <div className='flex-grow-1'>
+          <Routes>
+            <Route path="/" element={<Navigate to="/home" />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/login" element={<PublicRoute element={<LoginPage />} />} />
+            <Route path="/register" element={<PublicRoute element={<RegisterPage />} />} />
+            <Route path="/contact" element={<PrivateRoute element={<ContactPage />} />} />
+            <Route path="/doctor-profile" element={<PrivateRoute element={<EditDoctorProfilePage />} />} />
+            <Route path="/client-profile" element={<PrivateRoute element={<EditClientProfilePage />} />} />
+            <Route path="/search" element={<SearchDoctorsPage />} />
+            <Route path="/doctor/:doctorId" element={<DoctorProfilePage />} />
+            <Route path="/review-list/:doctorId" element={<ReviewListPage />} />
+          </Routes>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </AuthProvider>
   );
-}
+};

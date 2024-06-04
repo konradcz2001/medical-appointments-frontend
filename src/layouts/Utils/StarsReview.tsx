@@ -1,3 +1,5 @@
+import React from "react";
+
 export const StarsReview: React.FC<{ rating: number, size: number }> = (props) => {
     
     let rating = props.rating;

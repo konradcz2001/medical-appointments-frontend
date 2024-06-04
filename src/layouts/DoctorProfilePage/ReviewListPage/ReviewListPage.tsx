@@ -4,6 +4,7 @@ import { Pagination } from '../../Utils/Pagination';
 import { Review } from '../../Utils/Review';
 import { SpinnerLoading } from '../../Utils/SpinnerLoading';
 import { Link } from 'react-router-dom';
+import React from 'react';
 
 export const ReviewListPage = () => {
 
@@ -17,7 +18,6 @@ export const ReviewListPage = () => {
     const [totalAmountOfReviews, setTotalAmountOfReviews] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
 
-    // Book to lookup reviews
     const doctorId = (window.location.pathname).split('/')[2];
 
     useEffect(() => {
@@ -79,7 +79,7 @@ export const ReviewListPage = () => {
             setIsLoading(false);
             setHttpError(error.message);
         })
-    }, [currentPage]);
+    }, [currentPage, doctorId, reviewsPerPage]);
 
     if (isLoading) {
         return (

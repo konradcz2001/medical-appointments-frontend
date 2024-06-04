@@ -3,13 +3,14 @@ import { Doctor } from "../../models/Doctor";
 import ReviewModel from "../../models/ReviewModel";
 import { SpinnerLoading } from "../Utils/SpinnerLoading";
 import { StarsReview } from "../Utils/StarsReview";
-import { CheckoutAndReviewBox } from "./CheckoutAndReviewBox";
-import { LatestReviews } from "./LatestReviews";
-import ReviewRequestModel from "../../models/ReviewRequestModel";
+import { LatestReviews } from "./components/LatestReviews";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../security/AuthContext";
+
 
 export const DoctorProfilePage = () => {
 
-
+    const { user } = useAuth();
     const [doctor, setDoctor] = useState<Doctor>();
     const [isLoading, setIsLoading] = useState(true);
     const [httpError, setHttpError] = useState(null);
@@ -19,21 +20,11 @@ export const DoctorProfilePage = () => {
     const [totalStars, setTotalStars] = useState(0);
     const [isLoadingReview, setIsLoadingReview] = useState(true);
 
-    const [isReviewLeft, setIsReviewLeft] = useState(false);
-    const [isLoadingUserReview, setIsLoadingUserReview] = useState(true);
-
-    // Loans Count State
-    const [currentLoansCount, setCurrentLoansCount] = useState(0);
-    const [isLoadingCurrentLoansCount, setIsLoadingCurrentLoansCount] = useState(true);
-
-    // Is Book Check Out?
-    const [isCheckedOut, setIsCheckedOut] = useState(false);
-    const [isLoadingBookCheckedOut, setIsLoadingBookCheckedOut] = useState(true);
-
     const doctorId = (window.location.pathname).split('/')[2];
 
     useEffect(() => {
         const fetchDoctor = async () => {
+            console.log('doc id: ', doctorId);
             const baseUrl: string = `http://localhost:8080/doctors/${doctorId}`;
 
             const response = await fetch(baseUrl);
@@ -62,8 +53,8 @@ export const DoctorProfilePage = () => {
                 isVerified: responseJson.isVerified,
                 avatar: responseJson.avatar,
                 profileDescription: responseJson.profileDescription,
-                specializations: responseJson.specializations
-
+                specializations: responseJson.specializations,
+                typesOfVisits: responseJson.typesOfVisits
             };
 
             setDoctor(loadedDoctor);
@@ -73,7 +64,7 @@ export const DoctorProfilePage = () => {
             setIsLoading(false);
             setHttpError(error.message);
         })
-    }, [isCheckedOut]);
+    }, [doctorId]);
 
     useEffect(() => {
         const fetchDoctorReviews = async () => {
@@ -139,7 +130,7 @@ export const DoctorProfilePage = () => {
             setIsLoadingReview(false);
             setHttpError(error.message);
         })
-    }, [isReviewLeft]);
+    }, [doctorId]);
 
 
 
@@ -195,13 +186,31 @@ export const DoctorProfilePage = () => {
 
                         </div>
                     </div>
-                    <CheckoutAndReviewBox doctor={doctor} mobile={false} currentLoansCount={currentLoansCount} 
-                        isAuthenticated={true} isCheckedOut={isCheckedOut} 
-                        checkoutBook={true} isReviewLeft={isReviewLeft} submitReview={true}/>
                 </div>
                 <div className='row mt-2'>
                     <p className='lead'>{doctor?.profileDescription}</p>
                 </div>
+                    {
+                        doctor?.typesOfVisits ? 
+                            <div className='row mt-2' style={{ marginLeft: '20px' }}>
+                                <h4>Price-list:</h4>
+                                <ul className='lead'>
+                                    {doctor.typesOfVisits.map(type => {
+                                        return(
+                                            <li>{type.type} | {type.price}{type.currency}</li>
+                                        )
+                                    })}
+                                </ul>
+                            </div>
+                        : <></>
+                    }
+                    {doctor?.typesOfVisits && user && user?.role !== 'DOCTOR' &&
+                        <Link type='button' className='btn my-btn ml-3' style={{ marginLeft: '20px' }}
+                            to={`/visit/${doctor.id}`}>
+                            Make an appointment
+                        </Link>
+                    }
+
                 <hr />
                 <LatestReviews reviews={reviews} doctorId={doctor?.id} mobile={false} />
             </div>
@@ -240,13 +249,30 @@ export const DoctorProfilePage = () => {
                             {doctor?.address.houseNumber ? ' | ' + doctor.address.houseNumber : <></>} 
                     </div>
                 </div>
-                <CheckoutAndReviewBox doctor={doctor} mobile={true} currentLoansCount={currentLoansCount} 
-                    isAuthenticated={true} isCheckedOut={isCheckedOut} 
-                    checkoutBook={true} isReviewLeft={isReviewLeft} submitReview={true}/>
                 
                 <div className='row mt-2'>
                     <p className='lead'>{doctor?.profileDescription}</p>
                 </div>
+                    {
+                        doctor?.typesOfVisits ? 
+                            <div className='row mt-2' style={{ marginLeft: '20px' }}>
+                                <h4>Price-list:</h4>
+                                <ul className='lead'>
+                                    {doctor.typesOfVisits.map(type => {
+                                        return(
+                                            <li>{type.type} | {type.price}{type.currency}</li>
+                                        )
+                                    })}
+                                </ul>
+                            </div>
+                        : <></>
+                    }
+                    {doctor?.typesOfVisits && user && user?.role !== 'DOCTOR' &&
+                        <Link type='button' className='btn my-btn ml-3' style={{ marginLeft: '20px' }}
+                            to={`/visit/${doctor.id}`}>
+                            Make an appointment
+                        </Link>
+                    }
                 <hr />
                 <LatestReviews reviews={reviews} doctorId={doctor?.id} mobile={true} />
             </div>

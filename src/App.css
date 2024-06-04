@@ -29,9 +29,26 @@ background-color: #0ea889 ;
     color: white;
 }
 
+.btn-trash {
+    background-color: #a82d0e ;
+    color: white;
+}
+
 .input-file{
     max-width: 256px;
 }
+
+.date-in-range {
+    background: #b9f1d1 !important;
+    color: black;
+}
+
+
+.highlight {
+    background: #ffeb3b;
+    color: black;
+}
+
 
 
 .avatar-img {

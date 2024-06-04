@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import ReviewModel from "../../models/ReviewModel";
-import { Review } from "../Utils/Review";
+import React from "react";
+import ReviewModel from "../../../models/ReviewModel";
+import { Review } from "../../Utils/Review";
 
 export const LatestReviews: React.FC<{
     reviews: ReviewModel[], doctorId: number | undefined, mobile: boolean
@@ -20,7 +21,7 @@ export const LatestReviews: React.FC<{
 
                         <div className='m-4'>
                             <Link type='button' className='btn my-btn'
-                                to={`/reviewlist/${props.doctorId}`}>
+                                to={`/review-list/${props.doctorId}`}>
                                 Show all reviews
                             </Link>
                         </div>
@@ -31,7 +32,12 @@ export const LatestReviews: React.FC<{
                             Currently there are no reviews for this doctor
                         </p>
                     </div>
+                    
                 }
+                    {/* <Link type='button' className='btn my-btn'
+                        to={`/add-review/${props.doctorId}`}>
+                        Add new review
+                    </Link> */}
             </div>
         </div>
     );

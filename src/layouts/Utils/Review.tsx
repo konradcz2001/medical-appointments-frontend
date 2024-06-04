@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import ReviewModel from "../../models/ReviewModel";
 import { StarsReview } from "./StarsReview";
 import { SpinnerLoading } from "./SpinnerLoading";
+import React from "react";
 
 export const Review: React.FC<{ review: ReviewModel }> = (props) => {
     const [isLoading, setIsLoading] = useState(true);

@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../../security/AuthContext";
 
-export const ClientServices = (props: any) => {
+export const ClientServices = () => {
+    const { user } = useAuth();
 
 
     return (
@@ -16,7 +17,7 @@ export const ClientServices = (props: any) => {
                         send us a message. We will try to help you.
                     </p>
                     <div className='d-grid gap-2 justify-content-md-start mb-4 mb-lg-3'>
-                        {props.isLoggedIn ? (
+                        {user ? (
                             <Link className='btn my-btn' to='/contact'>
                                 Send us a message <i className="bi bi-send"></i>
                             </Link>

@@ -1,15 +1,21 @@
-import { Client } from './Client';
-import { Doctor } from './Doctor';
+
 
 export class Visit{
-    public notes?: string;
 
     constructor(
         public id: number,
-        public dateOfVisit: string,
+        public date: string,
         public type: string,
-        public doctor: Doctor,
-        public client: Client){
+        public price: number,
+        public currency: string,
+        public isCancelled: boolean,
+        public doctorId: number,
+        public clientId: number,
+        public clientFirstName?: string,
+        public clientLastName?: string,
+        public doctorFirstName?: string,
+        public doctorLastName?: string,
+        public notes?: string){
             
         }
 }

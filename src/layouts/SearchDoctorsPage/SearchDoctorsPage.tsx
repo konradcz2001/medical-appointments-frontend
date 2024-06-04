@@ -5,6 +5,7 @@ import { SpinnerLoading } from "../Utils/SpinnerLoading";
 import { SearchDoctor } from "./components/SearchDoctor";
 import { Specialization } from "../../models/Specialization";
 import { Address } from "../../models/Address";
+import React from "react";
 
 export const SearchDoctorsPage = () => {
     const [doctors, setDoctors] = useState<Doctor[]>([]);
@@ -27,7 +28,7 @@ export const SearchDoctorsPage = () => {
             let url: string;
 
             if(searchUrl === '' && specializationSelection === 'Specialization'){
-                url = `${baseUrl}?${pagination}`;
+                url = `${baseUrl}?${pagination}&sort=firstName`;
             }
             else if(specializationSelection === 'Specialization'){
                 url = `${baseUrl}${searchUrl}&${pagination}`;
@@ -96,7 +97,7 @@ export const SearchDoctorsPage = () => {
     useEffect(() => {
 
         const fetchSpecializations = async () => {
-            const url: string = "http://localhost:8080/doctors/specializations";
+            const url: string = "http://localhost:8080/doctors/specializations?sort=specialization";
 
             const response = await fetch(url);
 

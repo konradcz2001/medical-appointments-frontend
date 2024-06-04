@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SpinnerLoading } from '../Utils/SpinnerLoading';
+import { useAuth } from '../../security/AuthContext';
 
-export const ContactPage = (props: any) => {
+export const ContactPage = () => {
   const [subject, setSubject] = useState('');
   const [isLoading, setLoading] = useState(false);
   const [body, setBody] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!props.isLoggedIn) {
-      window.location.replace('/home');
-    }
-  }, [props.isLoggedIn]);
+  const { user } = useAuth();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -26,7 +22,7 @@ export const ContactPage = (props: any) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ userEmail: props.email, subject, body }), 
+        body: JSON.stringify({ userEmail: user?.sub, subject, body }), 
       });
 
       if (!response.ok) {
@@ -53,7 +49,7 @@ export const ContactPage = (props: any) => {
   if (isLoading) {
     return (
       <>
-        <div className='d-flex justify-content-center m-4'>Please wait, this may take a while</div>
+        <div className='d-flex justify-content-center m-4'>Please wait, this may take a while (around 20 seconds)</div>
         <SpinnerLoading />
       </>
     )
