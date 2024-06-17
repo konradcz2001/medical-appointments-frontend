@@ -14,6 +14,7 @@ import { EditClientProfilePage } from './layouts/EditClientProfilePage/EditClien
 import { AuthProvider } from './security/AuthContext';
 import PrivateRoute from './security/PrivateRoute';
 import PublicRoute from './security/PublicRoute';
+import { VisitPage } from './layouts/DoctorProfilePage/VisitPage/VisitPage';
 
 export const App = () => {
   return (
@@ -29,6 +30,7 @@ export const App = () => {
             <Route path="/contact" element={<PrivateRoute element={<ContactPage />} />} />
             <Route path="/doctor-profile" element={<PrivateRoute element={<EditDoctorProfilePage />} />} />
             <Route path="/client-profile" element={<PrivateRoute element={<EditClientProfilePage />} />} />
+            <Route path="/visit/:doctorId" element={<PrivateRoute element={<VisitPage />} />} />
             <Route path="/search" element={<SearchDoctorsPage />} />
             <Route path="/doctor/:doctorId" element={<DoctorProfilePage />} />
             <Route path="/review-list/:doctorId" element={<ReviewListPage />} />

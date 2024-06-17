@@ -108,7 +108,7 @@ export const EditClientProfilePage = () => {
                         <input type="text" name="lastName" value={client?.lastName || ''} onChange={handleChangeClient} placeholder="Last Name" className="form-control mb-2 mt-1" maxLength={100} />
                         
                         <button onClick={handleSave} disabled={isLoading} className="btn my-btn m-3 mb-3">
-                            {isLoading ? 'Saving...' : 'Save'}
+                            {isLoading ? 'Saving...' : <>Save {<i className="bi bi-floppy"></i>}</>}
                         </button>
                         {httpError && <p className="text-danger">{httpError}</p>}
                         {success && <p className="text">{success}</p>}

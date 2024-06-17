@@ -77,7 +77,7 @@ export const ContactPage = () => {
           <div className='m-4'>
                 <Link type='button' className='btn my-btn'
                     to={`/home`}>
-                    Return to home page
+                    Back to home page <i className="bi bi-arrow-return-left"></i>
                 </Link>
             </div>
         </div>

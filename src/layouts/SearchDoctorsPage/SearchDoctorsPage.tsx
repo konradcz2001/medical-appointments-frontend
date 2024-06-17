@@ -65,12 +65,12 @@ export const SearchDoctorsPage = () => {
                     email: responseData[key].email,
                     role: responseData[key].role,
                     address:{
-                    country: responseData[key].address.country,
-                    state: responseData[key].address.state,
-                    city: responseData[key].address.city,
-                    street: responseData[key].address.street,
-                    houseNumber: responseData[key].address.houseNumber,
-                    zipCode: responseData[key].address.zipCode
+                    country: responseData[key].address?.country,
+                    state: responseData[key].address?.state,
+                    city: responseData[key].address?.city,
+                    street: responseData[key].address?.street,
+                    houseNumber: responseData[key].address?.houseNumber,
+                    zipCode: responseData[key].address?.zipCode
                     },
                     isVerified: responseData[key].isVerified,
                     avatar: responseData[key].avatar,

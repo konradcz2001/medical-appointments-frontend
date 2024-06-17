@@ -22,7 +22,7 @@ export const VisitsManagementByClient = (props: any) => {
             setEmptyPageError(false);
 
             try {
-                const response = await fetch(`http://localhost:8080/visits?clientId=${props.clientId}&page=${currentPage - 1}&size=${visitsPerPage}`);
+                const response = await fetch(`http://localhost:8080/visits?isCancelled=false&clientId=${props.clientId}&page=${currentPage - 1}&size=${visitsPerPage}`);
                 
                 if (!response.ok) {
                     const errorData = await response.json();
@@ -37,7 +37,7 @@ export const VisitsManagementByClient = (props: any) => {
                 setTotalPages(responseJson.totalPages);
 
                 for (const visitData of responseData) {
-                    const responseDoctor = await fetch(`http://localhost:8080/doctors/${visitData.doctorId}`);
+                    const responseDoctor = await fetch(`http://localhost:8080/doctors/${visitData.typeOfVisit.doctorId}`);
                     if (!responseDoctor.ok) {
                         const errorData = await responseDoctor.json();
                         throw new Error(errorData.message);
@@ -51,6 +51,7 @@ export const VisitsManagementByClient = (props: any) => {
                         type: visitData.typeOfVisit.type,
                         price: visitData.typeOfVisit.price,
                         currency: visitData.typeOfVisit.currency,
+                        duration: visitData.typeOfVisit.duration,
                         isCancelled: visitData.isCancelled,
                         doctorId: visitData.typeOfVisit.doctorId,
                         clientId: visitData.clientId,
@@ -119,10 +120,10 @@ export const VisitsManagementByClient = (props: any) => {
                         {indexOfFirstVisit + 1} to {lastItem} of {totalAmountOfVisits} items: 
                     </p>}
 
-                    {clientVisits.filter(visit => visit.isCancelled === false).map((visit, index) => (
-                        <div key={index} className="mt-3">
+                    {clientVisits.map((visit) => (
+                        <div key={visit.id} className="mt-3">
                             <span>
-                                <strong>Date:</strong> {visit.date} | <strong>Type:</strong> {visit.type} | <strong>Price:</strong> {visit.price}{visit.currency} | <strong>Notes:</strong> {visit.notes} | <strong>Doctor first name:</strong> {visit.doctorFirstName} | <strong>Doctor last name:</strong> {visit.doctorLastName} |&nbsp;
+                                <strong>Date:</strong> {visit.date.toLocaleString().substring(0, visit.date.toLocaleString().length - 3)} | <strong>Type:</strong> {visit.type} | <strong>Price:</strong> {visit.price}{visit.currency} | <strong>Duration:</strong> {visit.duration} minutes | <strong>Notes:</strong> {visit.notes}{ !visit.notes && ' - '} | <strong>Doctor:</strong> {visit.doctorFirstName} {visit.doctorLastName} |&nbsp;
                             </span>
 
                             <button onClick={() => handleCancelVisit(visit.id)} className="btn btn-trash">Cancel</button>

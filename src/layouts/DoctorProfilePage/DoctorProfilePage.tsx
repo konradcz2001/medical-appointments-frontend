@@ -6,6 +6,7 @@ import { StarsReview } from "../Utils/StarsReview";
 import { LatestReviews } from "./components/LatestReviews";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../security/AuthContext";
+import { ScheduleComponent } from "./components/ScheduleComponent";
 
 
 export const DoctorProfilePage = () => {
@@ -24,7 +25,6 @@ export const DoctorProfilePage = () => {
 
     useEffect(() => {
         const fetchDoctor = async () => {
-            console.log('doc id: ', doctorId);
             const baseUrl: string = `http://localhost:8080/doctors/${doctorId}`;
 
             const response = await fetch(baseUrl);
@@ -43,18 +43,34 @@ export const DoctorProfilePage = () => {
                 email: responseJson.email,
                 role: responseJson.role,
                 address:{
-                country: responseJson.address.country,
-                state: responseJson.address.state,
-                city: responseJson.address.city,
-                street: responseJson.address.street,
-                houseNumber: responseJson.address.houseNumber,
-                zipCode: responseJson.address.zipCode
+                    country: responseJson.address?.country,
+                    state: responseJson.address?.state,
+                    city: responseJson.address?.city,
+                    street: responseJson.address?.street,
+                    houseNumber: responseJson.address?.houseNumber,
+                    zipCode: responseJson.address?.zipCode
                 },
                 isVerified: responseJson.isVerified,
                 avatar: responseJson.avatar,
                 profileDescription: responseJson.profileDescription,
                 specializations: responseJson.specializations,
-                typesOfVisits: responseJson.typesOfVisits
+                typesOfVisits: responseJson.typesOfVisits,
+                schedule: {
+                    mondayStart: responseJson.schedule?.mondayStart,
+                    mondayEnd: responseJson.schedule?.mondayEnd,
+                    tuesdayStart: responseJson.schedule?.tuesdayStart,
+                    tuesdayEnd: responseJson.schedule?.tuesdayEnd,
+                    wednesdayStart: responseJson.schedule?.wednesdayStart,
+                    wednesdayEnd: responseJson.schedule?.wednesdayEnd,
+                    thursdayStart: responseJson.schedule?.thursdayStart,
+                    thursdayEnd: responseJson.schedule?.thursdayEnd,
+                    fridayStart: responseJson.schedule?.fridayStart,
+                    fridayEnd: responseJson.schedule?.fridayEnd,
+                    saturdayStart: responseJson.schedule?.saturdayStart,
+                    saturdayEnd: responseJson.schedule?.saturdayEnd,
+                    sundayStart: responseJson.schedule?.sundayStart,
+                    sundayEnd: responseJson.schedule?.sundayEnd
+                }
             };
 
             setDoctor(loadedDoctor);
@@ -176,7 +192,8 @@ export const DoctorProfilePage = () => {
                             }
                             </h5>
                             
-                            {doctor?.address.country || doctor?.address.state || doctor?.address.zipCode || doctor?.address.city || doctor?.address.street || doctor?.address.houseNumber ? <i className="bi bi-geo-alt"></i> : <></>}                                                                                                                                               
+                            <i className="bi bi-geo-alt"></i>
+                            {doctor?.address.country || doctor?.address.state || doctor?.address.zipCode || doctor?.address.city || doctor?.address.street || doctor?.address.houseNumber ? <></> : '  (address not provided)  '}                                                                                                                                               
                             {doctor?.address.country ? ' | ' + doctor.address.country : <></>} 
                             {doctor?.address.state ? ' | ' + doctor.address.state : <></>}
                             {doctor?.address.zipCode ? ' | ' + doctor.address.zipCode : <></>} 
@@ -192,24 +209,34 @@ export const DoctorProfilePage = () => {
                 </div>
                     {
                         doctor?.typesOfVisits ? 
-                            <div className='row mt-2' style={{ marginLeft: '20px' }}>
+                            <div className='row mt-4' style={{ marginLeft: '20px' }}>
                                 <h4>Price-list:</h4>
+                                {doctor?.typesOfVisits.length === 0 && 'There are no offers' }
+
                                 <ul className='lead'>
                                     {doctor.typesOfVisits.map(type => {
                                         return(
-                                            <li>{type.type} | {type.price}{type.currency}</li>
+                                            <li key={type.id}>{type.type} ({type.duration} minutes) - {type.price}{type.currency}</li>
                                         )
                                     })}
                                 </ul>
                             </div>
                         : <></>
                     }
-                    {doctor?.typesOfVisits && user && user?.role !== 'DOCTOR' &&
-                        <Link type='button' className='btn my-btn ml-3' style={{ marginLeft: '20px' }}
-                            to={`/visit/${doctor.id}`}>
-                            Make an appointment
+
+                    {doctor?.typesOfVisits && user && user?.role !== 'DOCTOR' && doctor?.typesOfVisits.length !== 0 &&
+                        <Link type='button' className='btn my-btn mb-5' style={{ marginLeft: '20px' }}
+                            to={`/visit/${doctor.id}`} state={{ typesOfVisits: doctor.typesOfVisits }}>
+                            Make an appointment <i className="bi bi-journal-bookmark"></i>
                         </Link>
                     }
+                    {!user && 
+                        <Link className='btn my-btn mb-5' style={{ marginLeft: '20px' }} 
+                            to='/login'>
+                            Sing in and make an appointment <i className="bi bi-box-arrow-in-right"></i>
+                        </Link>
+                    }
+                    {<ScheduleComponent schedule={doctor?.schedule} />}
 
                 <hr />
                 <LatestReviews reviews={reviews} doctorId={doctor?.id} mobile={false} />
@@ -240,8 +267,8 @@ export const DoctorProfilePage = () => {
                                 : <></>
                             }
                             </h5>
-                            
-                            {doctor?.address.country || doctor?.address.state || doctor?.address.zipCode || doctor?.address.city || doctor?.address.street || doctor?.address.houseNumber ? 'L' : <></>}                                                                                                                                               
+                            <i className="bi bi-geo-alt"></i>
+                            {doctor?.address.country || doctor?.address.state || doctor?.address.zipCode || doctor?.address.city || doctor?.address.street || doctor?.address.houseNumber ? <></> : '  (address not provided)  '}                                                                                                                                               
                             {doctor?.address.state ? ' | ' + doctor.address.state : <></>} 
                             {doctor?.address.zipCode ? ' | ' + doctor.address.zipCode : <></>} 
                             {doctor?.address.city ? ' | ' + doctor.address.city : <></>} 
@@ -255,24 +282,35 @@ export const DoctorProfilePage = () => {
                 </div>
                     {
                         doctor?.typesOfVisits ? 
-                            <div className='row mt-2' style={{ marginLeft: '20px' }}>
+                            <div className='row mt-4' style={{ marginLeft: '20px' }}>
                                 <h4>Price-list:</h4>
+                                {doctor?.typesOfVisits.length === 0 && 'There are no offers' }
+
                                 <ul className='lead'>
                                     {doctor.typesOfVisits.map(type => {
                                         return(
-                                            <li>{type.type} | {type.price}{type.currency}</li>
+                                            <li key={type.id}>{type.type} ({type.duration} minutes) - {type.price}{type.currency}</li>
                                         )
                                     })}
                                 </ul>
                             </div>
                         : <></>
                     }
-                    {doctor?.typesOfVisits && user && user?.role !== 'DOCTOR' &&
-                        <Link type='button' className='btn my-btn ml-3' style={{ marginLeft: '20px' }}
-                            to={`/visit/${doctor.id}`}>
-                            Make an appointment
+
+                    {doctor?.typesOfVisits && user && user?.role !== 'DOCTOR' && doctor?.typesOfVisits.length !== 0 &&
+                        <Link type='button' className='btn my-btn mb-5' style={{ marginLeft: '20px' }}
+                            to={`/visit/${doctor.id}`} state={{ typesOfVisits: doctor.typesOfVisits }}>
+                            Make an appointment <i className="bi bi-journal-bookmark"></i>
                         </Link>
                     }
+                    {!user && 
+                        <Link className='btn my-btn mb-5' style={{ marginLeft: '20px' }} 
+                            to='/login'>
+                            Sing in and make an appointment <i className="bi bi-box-arrow-in-right"></i>
+                        </Link>
+                    }
+                    {<ScheduleComponent schedule={doctor?.schedule} />}
+
                 <hr />
                 <LatestReviews reviews={reviews} doctorId={doctor?.id} mobile={true} />
             </div>

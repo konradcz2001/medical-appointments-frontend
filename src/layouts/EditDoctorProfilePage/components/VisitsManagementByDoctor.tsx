@@ -22,7 +22,7 @@ export const VisitsManagementByDoctor = (props: any) => {
             setEmptyPageError(false);
 
             try {
-                const response = await fetch(`http://localhost:8080/visits?doctorId=${props.doctorId}&page=${currentPage - 1}&size=${visitsPerPage}`);
+                const response = await fetch(`http://localhost:8080/visits?isCancelled=false&doctorId=${props.doctorId}&page=${currentPage - 1}&size=${visitsPerPage}`);
                 
                 if (!response.ok) {
                     const errorData = await response.json();
@@ -51,6 +51,7 @@ export const VisitsManagementByDoctor = (props: any) => {
                         type: visitData.typeOfVisit.type,
                         price: visitData.typeOfVisit.price,
                         currency: visitData.typeOfVisit.currency,
+                        duration: visitData.typeOfVisit.duration,
                         isCancelled: visitData.isCancelled,
                         doctorId: visitData.typeOfVisit.doctorId,
                         clientId: visitData.clientId,
@@ -119,10 +120,10 @@ export const VisitsManagementByDoctor = (props: any) => {
                         {indexOfFirstVisit + 1} to {lastItem} of {totalAmountOfVisits} items: 
                     </p>}
 
-                    {doctorVisits.filter(visit => visit.isCancelled === false).map((visit, index) => (
-                        <div key={index} className="mt-3">
+                    {doctorVisits.map((visit) => (
+                        <div key={visit.id} className="mt-3">
                             <span>
-                                <strong>Date:</strong> {visit.date} | <strong>Type:</strong> {visit.type} | <strong>Price:</strong> {visit.price}{visit.currency} | <strong>Notes:</strong> {visit.notes} | <strong>Client first name:</strong> {visit.clientFirstName} | <strong>Client last name:</strong> {visit.clientLastName} |&nbsp;
+                                <strong>Date:</strong> {visit.date.toLocaleString().substring(0, visit.date.toLocaleString().length - 3)} | <strong>Type:</strong> {visit.type} | <strong>Price:</strong> {visit.price}{visit.currency} | <strong>Duration:</strong> {visit.duration} minutes | <strong>Notes:</strong> {visit.notes}{ !visit.notes && ' - '} | <strong>Client:</strong> {visit.clientFirstName} {visit.clientLastName} |&nbsp;
                             </span>
 
                             <button onClick={() => handleCancelVisit(visit.id)} className="btn btn-trash">Cancel</button>

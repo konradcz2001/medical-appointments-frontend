@@ -122,7 +122,7 @@ export const ReviewListPage = () => {
             <div className='m-4'>
                 <Link type='button' className='btn my-btn'
                     to={`/doctor/${doctorId}`}>
-                    Return to doctor profile
+                    Back to doctor's profile <i className="bi bi-arrow-return-left"></i>
                 </Link>
             </div>
 

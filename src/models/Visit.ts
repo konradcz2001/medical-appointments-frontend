@@ -8,6 +8,7 @@ export class Visit{
         public type: string,
         public price: number,
         public currency: string,
+        public duration: number,
         public isCancelled: boolean,
         public doctorId: number,
         public clientId: number,

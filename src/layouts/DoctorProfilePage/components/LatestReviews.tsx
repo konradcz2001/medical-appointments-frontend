@@ -22,7 +22,7 @@ export const LatestReviews: React.FC<{
                         <div className='m-4'>
                             <Link type='button' className='btn my-btn'
                                 to={`/review-list/${props.doctorId}`}>
-                                Show all reviews
+                                Show all reviews <i className="bi bi-list-stars"></i>
                             </Link>
                         </div>
                     </>
@@ -34,10 +34,7 @@ export const LatestReviews: React.FC<{
                     </div>
                     
                 }
-                    {/* <Link type='button' className='btn my-btn'
-                        to={`/add-review/${props.doctorId}`}>
-                        Add new review
-                    </Link> */}
+                
             </div>
         </div>
     );

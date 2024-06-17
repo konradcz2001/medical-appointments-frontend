@@ -22,7 +22,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
-  },  
+  },
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -45,6 +45,7 @@
     "@craco/craco": "^7.1.0",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/react-highlight-words": "^0.20.0",
+    "@types/react-router-dom": "^5.3.3",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
     "process": "^0.11.10",

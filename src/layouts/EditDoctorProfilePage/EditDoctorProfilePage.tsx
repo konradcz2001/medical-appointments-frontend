@@ -4,6 +4,8 @@ import { LeavesManagement } from './components/LeavesManagement';
 import { SpecializationsManagement } from './components/SpecializationsManagement';
 import { VisitsManagementByDoctor } from './components/VisitsManagementByDoctor';
 import { useAuth } from '../../security/AuthContext';
+import { ScheduleManagement } from './components/ScheduleManagement';
+import { Schedule } from '../../models/Schedule';
 
 export const EditDoctorProfilePage = (props: any) => {
     const { user } = useAuth();
@@ -36,7 +38,23 @@ export const EditDoctorProfilePage = (props: any) => {
                 responseJson.profileDescription,
                 responseJson.address,
                 responseJson.id,
-                responseJson.specializations
+                responseJson.specializations,
+                new Schedule(
+                    responseJson.schedule?.mondayStart,
+                    responseJson.schedule?.mondayEnd,
+                    responseJson.schedule?.tuesdayStart,
+                    responseJson.schedule?.tuesdayEnd,
+                    responseJson.schedule?.wednesdayStart,
+                    responseJson.schedule?.wednesdayEnd,
+                    responseJson.schedule?.thursdayStart,
+                    responseJson.schedule?.thursdayEnd,
+                    responseJson.schedule?.fridayStart,
+                    responseJson.schedule?.fridayEnd,
+                    responseJson.schedule?.saturdayStart,
+                    responseJson.schedule?.saturdayEnd,
+                    responseJson.schedule?.sundayStart,
+                    responseJson.schedule?.sundayEnd
+                )
             );
 
             setDoctor(loadedDoctor);
@@ -179,7 +197,7 @@ export const EditDoctorProfilePage = (props: any) => {
                         <textarea name="profileDescription" value={doctor?.profileDescription || ''} onChange={handleChangeDoctor} placeholder="Profile Description" className="form-control mb-2 mt-1" rows={10} maxLength={10000}></textarea>
                         
                         <button onClick={handleSave} disabled={isLoading} className="btn my-btn m-3 mb-3">
-                            {isLoading ? 'Saving...' : 'Save'}
+                            {isLoading ? 'Saving...' : <>Save {<i className="bi bi-floppy"></i>}</>}
                         </button>
                         {httpError && <p className="text-danger">{httpError}</p>}
                         {success && <p className="text">{success}</p>}
@@ -187,6 +205,9 @@ export const EditDoctorProfilePage = (props: any) => {
                 </div>
             </div>
             <br/><br/>
+            <hr color="#FF0000"></hr>
+            <ScheduleManagement schedule={doctor?.schedule} doctorId={user?.id} />
+            <br/><br/><br/><br/>
             <hr color="#FF0000"></hr>
             <LeavesManagement doctorId={user?.id} />
             <br/><br/><br/><br/>

@@ -6,7 +6,6 @@ import Highlighter from 'react-highlight-words';
 export const SearchDoctor: React.FC<{ doctor: Doctor, searchTerm: string }> = (props) => {
     const { doctor, searchTerm } = props;
     const address = doctor?.address || null;
-    console.log("doctor id: ", doctor.id);
 
     return (
         <div className='card mt-3 shadow p-3 mb-3 bg-body rounded'>
@@ -37,7 +36,7 @@ export const SearchDoctor: React.FC<{ doctor: Doctor, searchTerm: string }> = (p
                             <Highlighter
                                 highlightClassName="search-highlight"
                                 searchWords={searchTerm.split(' ')}
-                                textToHighlight={`${doctor.firstName} ${doctor.lastName}`}
+                                textToHighlight={`${doctor.firstName} ${doctor.lastName} `}
                             />
                             {doctor.isVerified ? <i className="bi bi-patch-check"></i> : null}
                         </h4>
@@ -48,59 +47,59 @@ export const SearchDoctor: React.FC<{ doctor: Doctor, searchTerm: string }> = (p
                                 </React.Fragment>
                             ))}
                         </h5>
+                        
                         <p className='card-text'>
-                            
-                                <>
-                                    <i className="bi bi-geo-alt"></i>
-                                    {address?.country && (
-                                        <Highlighter
-                                            highlightClassName="search-highlight"
-                                            searchWords={searchTerm.split(' ')}
-                                            textToHighlight={' | ' + address.country}
-                                        />
-                                    )}
-                                    {address?.state && (
-                                        <Highlighter
-                                            highlightClassName="search-highlight"
-                                            searchWords={searchTerm.split(' ')}
-                                            textToHighlight={' | ' + address.state}
-                                        />
-                                    )}
-                                    {address?.zipCode && (
-                                        <Highlighter
-                                            highlightClassName="search-highlight"
-                                            searchWords={searchTerm.split(' ')}
-                                            textToHighlight={' | ' + address.zipCode}
-                                        />
-                                    )}
-                                    {address?.city && (
-                                        <Highlighter
-                                            highlightClassName="search-highlight"
-                                            searchWords={searchTerm.split(' ')}
-                                            textToHighlight={' | ' + address.city}
-                                        />
-                                    )}
-                                    {address?.street && (
-                                        <Highlighter
-                                            highlightClassName="search-highlight"
-                                            searchWords={searchTerm.split(' ')}
-                                            textToHighlight={' | ' + address.street}
-                                        />
-                                    )}
-                                    {address?.houseNumber && (
-                                        <Highlighter
-                                            highlightClassName="search-highlight"
-                                            searchWords={searchTerm.split(' ')}
-                                            textToHighlight={' | ' + address.houseNumber}
-                                        />
-                                    )}
-                                </>
-                             
+                            <i className="bi bi-geo-alt"></i>
+                            {address?.country || address?.state || address?.zipCode || address?.city || address?.street || address?.houseNumber ? <></> : '  (address not provided)  '} 
+
+                            {address?.country && (
+                                <Highlighter
+                                    highlightClassName="search-highlight"
+                                    searchWords={searchTerm.split(' ')}
+                                    textToHighlight={' | ' + address.country}
+                                />
+                            )}
+                            {address?.state && (
+                                <Highlighter
+                                    highlightClassName="search-highlight"
+                                    searchWords={searchTerm.split(' ')}
+                                    textToHighlight={' | ' + address.state}
+                                />
+                            )}
+                            {address?.zipCode && (
+                                <Highlighter
+                                    highlightClassName="search-highlight"
+                                    searchWords={searchTerm.split(' ')}
+                                    textToHighlight={' | ' + address.zipCode}
+                                />
+                            )}
+                            {address?.city && (
+                                <Highlighter
+                                    highlightClassName="search-highlight"
+                                    searchWords={searchTerm.split(' ')}
+                                    textToHighlight={' | ' + address.city}
+                                />
+                            )}
+                            {address?.street && (
+                                <Highlighter
+                                    highlightClassName="search-highlight"
+                                    searchWords={searchTerm.split(' ')}
+                                    textToHighlight={' | ' + address.street}
+                                />
+                            )}
+                            {address?.houseNumber && (
+                                <Highlighter
+                                    highlightClassName="search-highlight"
+                                    searchWords={searchTerm.split(' ')}
+                                    textToHighlight={' | ' + address.houseNumber}
+                                />
+                            )}
+
                         </p>
                     </div>
                 </div>
                 <div className='col-md-4 d-flex justify-content-center align-items-center'>
-                    <Link type='button' className='btn my-btn' to={`/doctor/${doctor.id}`}>View Details</Link>
+                    <Link type='button' className='btn my-btn' to={`/doctor/${doctor.id}`}>View Details <i className="bi bi-three-dots-vertical"></i></Link>
                 </div>
             </div>
         </div>
