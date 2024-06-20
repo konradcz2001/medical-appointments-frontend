@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Pagination } from '../../Utils/Pagination';
 import { Visit } from "../../../models/Visit";
+import { useAuth } from '../../../security/AuthContext';
 
 export const VisitsManagementByDoctor = (props: any) => {
 
@@ -9,6 +10,7 @@ export const VisitsManagementByDoctor = (props: any) => {
     const [httpError, setHttpError] = useState<string | null>(null);
     const [emptyPageError, setEmptyPageError] = useState<boolean>(false);
     const [success, setSuccess] = useState<string | null>(null);
+    const { token } = useAuth();
 
     // Pagination
     const [currentPage, setCurrentPage] = useState(1);
@@ -22,7 +24,12 @@ export const VisitsManagementByDoctor = (props: any) => {
             setEmptyPageError(false);
 
             try {
-                const response = await fetch(`http://localhost:8080/visits?isCancelled=false&doctorId=${props.doctorId}&page=${currentPage - 1}&size=${visitsPerPage}`);
+                const response = await fetch(`http://localhost:8080/visits?isCancelled=false&doctorId=${props.doctorId}&page=${currentPage - 1}&size=${visitsPerPage}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    },
+                });
                 
                 if (!response.ok) {
                     const errorData = await response.json();
@@ -37,7 +44,12 @@ export const VisitsManagementByDoctor = (props: any) => {
                 setTotalPages(responseJson.totalPages);
 
                 for (const visitData of responseData) {
-                    const responseClient = await fetch(`http://localhost:8080/clients/${visitData.clientId}`);
+                    const responseClient = await fetch(`http://localhost:8080/clients/${visitData.clientId}`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                        },
+                    });
                     if (!responseClient.ok) {
                         const errorData = await responseClient.json();
                         throw new Error(errorData.message);
@@ -76,7 +88,7 @@ export const VisitsManagementByDoctor = (props: any) => {
         };
 
         fetchVisits();
-    }, [currentPage, props.doctorId, visitsPerPage, success]);
+    }, [currentPage, props.doctorId, visitsPerPage, success, token]);
 
     const handleCancelVisit = async (visitId: number) => {
         setSuccess(null);
@@ -85,6 +97,9 @@ export const VisitsManagementByDoctor = (props: any) => {
         try {
             const response = await fetch(`http://localhost:8080/visits/${visitId}`, {
                 method: 'PATCH',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
             });
 
             if (!response.ok) {

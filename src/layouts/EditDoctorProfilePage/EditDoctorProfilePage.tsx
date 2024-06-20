@@ -6,9 +6,10 @@ import { VisitsManagementByDoctor } from './components/VisitsManagementByDoctor'
 import { useAuth } from '../../security/AuthContext';
 import { ScheduleManagement } from './components/ScheduleManagement';
 import { Schedule } from '../../models/Schedule';
+import { TypesOfVisitsManagement } from './components/TypesOfVisitsManagement';
 
 export const EditDoctorProfilePage = (props: any) => {
-    const { user } = useAuth();
+    const { user, token } = useAuth();
 
     const [avatar, setAvatar] = useState<string | null>(null);
     const [doctor, setDoctor] = useState<Doctor | null>(null);
@@ -139,6 +140,7 @@ export const EditDoctorProfilePage = (props: any) => {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify(tempDoctor),
             });
@@ -207,6 +209,9 @@ export const EditDoctorProfilePage = (props: any) => {
             <br/><br/>
             <hr color="#FF0000"></hr>
             <ScheduleManagement schedule={doctor?.schedule} doctorId={user?.id} />
+            <br/><br/><br/><br/>
+            <hr color="#FF0000"></hr>
+            <TypesOfVisitsManagement doctorId={user?.id} />
             <br/><br/><br/><br/>
             <hr color="#FF0000"></hr>
             <LeavesManagement doctorId={user?.id} />

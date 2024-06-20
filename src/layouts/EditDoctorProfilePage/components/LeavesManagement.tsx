@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { Pagination } from '../../Utils/Pagination';
+import { useAuth } from "../../../security/AuthContext";
 
 export const LeavesManagement = (props: any) => {
     const [leaves, setLeaves] = useState<Leave[]>([]);
@@ -13,6 +14,7 @@ export const LeavesManagement = (props: any) => {
     const [httpError, setHttpError] = useState<string | null>(null);
     const [emptyPageError, setEmptyPageError] = useState<boolean>(false);
     const [success, setSuccess] = useState<string | null>(null);
+    const { token } = useAuth();
 
     // Pagination
     const [currentPage, setCurrentPage] = useState(1);
@@ -76,6 +78,7 @@ export const LeavesManagement = (props: any) => {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify(newLeave),
             });
@@ -102,6 +105,9 @@ export const LeavesManagement = (props: any) => {
         try {
             const response = await fetch(`http://localhost:8080/doctors/${props.doctorId}/remove-leave?id=${leaveId}`, {
                 method: 'PATCH',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
             });
 
             if (response.ok) {

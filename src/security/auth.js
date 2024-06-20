@@ -1,7 +1,6 @@
 import { jwtDecode } from 'jwt-decode';
 
-export const getDecodedToken = () => {
-  const token = localStorage.getItem('jwt');
+export const getDecodedToken = (token) => {
   if (!token) {
     return null;
   }
@@ -20,7 +19,7 @@ export const getDecodedToken = () => {
 };
 
 export const isAuthenticated = () => {
-  return !!getDecodedToken();
+  return !!getDecodedToken(localStorage.getItem('jwt'));
 };
 
 export const login = (token) => {

@@ -69,6 +69,9 @@ export const ReviewListPage = () => {
                     description: responseData[key].description,
                     doctor_id: responseData[key].doctorId,
                     client_id: responseData[key].clientId,
+                    clientFirstName: responseData[key].clientFirstName,
+                    doctorFirstName: responseData[key].doctorFirstName,
+                    doctorLastName: responseData[key].doctorLastName
                 });
             }
 

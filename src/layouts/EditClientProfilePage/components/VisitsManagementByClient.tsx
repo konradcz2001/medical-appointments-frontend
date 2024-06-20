@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Pagination } from '../../Utils/Pagination';
 import { Visit } from "../../../models/Visit";
+import { useAuth } from '../../../security/AuthContext';
 
 export const VisitsManagementByClient = (props: any) => {
 
@@ -9,6 +10,7 @@ export const VisitsManagementByClient = (props: any) => {
     const [httpError, setHttpError] = useState<string | null>(null);
     const [emptyPageError, setEmptyPageError] = useState<boolean>(false);
     const [success, setSuccess] = useState<string | null>(null);
+    const { token } = useAuth();
 
     // Pagination
     const [currentPage, setCurrentPage] = useState(1);
@@ -22,7 +24,12 @@ export const VisitsManagementByClient = (props: any) => {
             setEmptyPageError(false);
 
             try {
-                const response = await fetch(`http://localhost:8080/visits?isCancelled=false&clientId=${props.clientId}&page=${currentPage - 1}&size=${visitsPerPage}`);
+                const response = await fetch(`http://localhost:8080/visits?isCancelled=false&clientId=${props.clientId}&page=${currentPage - 1}&size=${visitsPerPage}`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    }
+                });
                 
                 if (!response.ok) {
                     const errorData = await response.json();
@@ -76,7 +83,7 @@ export const VisitsManagementByClient = (props: any) => {
         };
 
         fetchVisits();
-    }, [currentPage, props.clientId, visitsPerPage, success]);
+    }, [currentPage, props.clientId, visitsPerPage, success, token]);
 
     const handleCancelVisit = async (visitId: number) => {
         setSuccess(null);
@@ -85,6 +92,9 @@ export const VisitsManagementByClient = (props: any) => {
         try {
             const response = await fetch(`http://localhost:8080/visits/${visitId}`, {
                 method: 'PATCH',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                }
             });
 
             if (!response.ok) {

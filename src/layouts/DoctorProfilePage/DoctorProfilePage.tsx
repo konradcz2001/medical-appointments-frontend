@@ -129,6 +129,9 @@ export const DoctorProfilePage = () => {
                     description: responseData[key].description,
                     doctor_id: responseData[key].doctorId,
                     client_id: responseData[key].clientId,
+                    clientFirstName: responseData[key].clientFirstName,
+                    doctorFirstName: responseData[key].doctorFirstName,
+                    doctorLastName: responseData[key].doctorLastName
                 });
                 weightedStarReviews = weightedStarReviews + rating;
             }
@@ -226,7 +229,7 @@ export const DoctorProfilePage = () => {
 
                     {doctor?.typesOfVisits && user && user?.role !== 'DOCTOR' && doctor?.typesOfVisits.length !== 0 &&
                         <Link type='button' className='btn my-btn mb-5' style={{ marginLeft: '20px' }}
-                            to={`/visit/${doctor.id}`} state={{ typesOfVisits: doctor.typesOfVisits }}>
+                            to={`/visit/${doctor.id}`} state={{ typesOfVisits: doctor.typesOfVisits, schedule: doctor.schedule }}>
                             Make an appointment <i className="bi bi-journal-bookmark"></i>
                         </Link>
                     }
@@ -299,7 +302,7 @@ export const DoctorProfilePage = () => {
 
                     {doctor?.typesOfVisits && user && user?.role !== 'DOCTOR' && doctor?.typesOfVisits.length !== 0 &&
                         <Link type='button' className='btn my-btn mb-5' style={{ marginLeft: '20px' }}
-                            to={`/visit/${doctor.id}`} state={{ typesOfVisits: doctor.typesOfVisits }}>
+                            to={`/visit/${doctor.id}`} state={{ typesOfVisits: doctor.typesOfVisits, schedule: doctor.schedule }}>
                             Make an appointment <i className="bi bi-journal-bookmark"></i>
                         </Link>
                     }

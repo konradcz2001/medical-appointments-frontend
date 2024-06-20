@@ -4,7 +4,7 @@ import { VisitsManagementByClient } from './components/VisitsManagementByClient'
 import { useAuth } from '../../security/AuthContext';
 
 export const EditClientProfilePage = () => {
-    const { user } = useAuth();
+    const { user, token } = useAuth();
 
     const [client, setClient] = useState<Client | null>(null);
     const [isLoading, setIsLoading] = useState(true);
@@ -16,7 +16,12 @@ export const EditClientProfilePage = () => {
         const fetchClient = async () => {
             const baseUrl: string = `http://localhost:8080/clients/${user?.id}`;
 
-            const response = await fetch(baseUrl);
+            const response = await fetch(baseUrl, {
+                method: 'GET', 
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                }
+            });
 
             if (!response.ok) {
                 throw new Error('Something went wrong!');
@@ -42,7 +47,7 @@ export const EditClientProfilePage = () => {
             setHttpError(error.message || "Something went wrong");
         });
 
-    }, [success, user?.id]);
+    }, [success, token, user?.id]);
 
     const handleChangeClient = (e: any) => {
         setHttpError(null);
@@ -78,6 +83,7 @@ export const EditClientProfilePage = () => {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify(client),
             });

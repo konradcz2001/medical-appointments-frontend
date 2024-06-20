@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Schedule } from "../../../models/Schedule";
+import { useAuth } from "../../../security/AuthContext";
 
 export const ScheduleManagement = (props: any) => {
     const [schedule, setSchedule] = useState<Schedule>(new Schedule());
     const [isLoading, setIsLoading] = useState(false);
     const [httpError, setHttpError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
+    const { token } = useAuth();
 
     useEffect(() => {
         if (props.schedule) {
@@ -31,6 +33,7 @@ export const ScheduleManagement = (props: any) => {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify(schedule),
             });

@@ -9,18 +9,21 @@ export const ContactPage = () => {
   const [body, setBody] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
-  const { user } = useAuth();
+  const { user, token } = useAuth();
+
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
     setSuccess(null);
 
+
     try {
-      const response = await fetch('http://localhost:8080/mail', {
+      const response = await fetch('http://localhost:8080/email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({ userEmail: user?.sub, subject, body }), 
       });

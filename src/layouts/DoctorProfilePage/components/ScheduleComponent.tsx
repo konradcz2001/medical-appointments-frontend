@@ -1,6 +1,5 @@
 import { Schedule } from "../../../models/Schedule";
 
-
 export const ScheduleComponent = (props: any) => {
     const schedule = props.schedule || new Schedule();
 
@@ -12,10 +11,7 @@ export const ScheduleComponent = (props: any) => {
 
         if (isNaN(hourNumber) || isNaN(minuteNumber)) return 'N/A';
 
-        const period = hourNumber >= 12 ? 'PM' : 'AM';
-        const formattedHour = hourNumber % 12 || 12;
-
-        return `${formattedHour}:${minute.padStart(2, '0')} ${period}`;
+        return `${hour.padStart(2, '0')}:${minute.padStart(2, '0')}`;
     };
 
     return (

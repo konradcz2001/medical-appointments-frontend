@@ -1,20 +1,16 @@
-class ReviewModel {
-    id: number;
-    date: string;
-    rating: number;
-    description: string;
-    doctor_id: number;
-    client_id: number;
+export class ReviewModel {
 
-    constructor(id: number, date: string, 
-        rating: number, description: string, doctor_id: number, client_id: number) {
-            
-            this.id = id;
-            this.date = date;
-            this.rating = rating;
-            this.description = description;
-            this.doctor_id = doctor_id;
-            this.client_id = client_id;
+    constructor(
+        public id: number,
+        public date: string,
+        public rating: number,
+        public description: string,
+        public doctor_id: number,
+        public client_id: number,
+        public clientFirstName: string,
+        public doctorFirstName: string,
+        public doctorLastName: string
+        ) {
     }
 }
 

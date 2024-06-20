@@ -5,33 +5,32 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null); 
+  const [token, setToken] = useState(null); 
   
-  //user.sub (email)
-  //user.exp (expiration)
-  //user.iat (issued at) 
-  //user.role (role) 
-  //user.id (id)
-
   useEffect(() => {
-    const token = getDecodedToken();
-    if (token) {
-      setUser(token);
+    const storedToken = localStorage.getItem('jwt');
+    if (storedToken) {
+      setToken(storedToken);
+      const decoded = getDecodedToken(storedToken);
+      setUser(decoded);
     }
   }, []);
 
   const handleLogin = (token) => {
-    login(token);
-    const decoded = getDecodedToken();
+    login(token); 
+    setToken(token);
+    const decoded = getDecodedToken(token);
     setUser(decoded);
   };
 
   const handleLogout = () => {
-    logout();
+    logout(); 
+    setToken(null);
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, login: handleLogin, logout: handleLogout }}>
+    <AuthContext.Provider value={{ user, token, login: handleLogin, logout: handleLogout }}>
       {children}
     </AuthContext.Provider>
   );
