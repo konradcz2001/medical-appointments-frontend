@@ -2,8 +2,13 @@ import ReviewModel from "../../models/ReviewModel";
 import { StarsReview } from "./StarsReview";
 import React from "react";
 
+/**
+ * Functional component for rendering a review.
+ * 
+ * @param review The review object containing information like date, rating, client name, and description.
+ * @returns JSX element displaying the review details including stars rating, client name, date, and description.
+ */
 export const Review: React.FC<{ review: ReviewModel }> = (props) => {
-
 
     const date = new Date(props.review.date);
 

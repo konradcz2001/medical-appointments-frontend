@@ -4,9 +4,13 @@ import { Pagination } from "../Utils/Pagination";
 import { SpinnerLoading } from "../Utils/SpinnerLoading";
 import { SearchDoctor } from "./components/SearchDoctor";
 import { Specialization } from "../../models/Specialization";
-import { Address } from "../../models/Address";
-import React from "react";
 
+
+/**
+ * Functional component for searching and displaying a list of doctors based on search criteria and pagination.
+ * Utilizes useState and useEffect hooks to manage state and fetch data from an API.
+ * Renders search input, dropdown for specialization selection, list of doctors, and pagination component.
+ */
 export const SearchDoctorsPage = () => {
     const [doctors, setDoctors] = useState<Doctor[]>([]);
     const [specializations, setSpecialization] = useState<Specialization[]>([]);

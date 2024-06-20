@@ -3,6 +3,13 @@ import { Link } from "react-router-dom";
 import { Doctor } from "../../../models/Doctor";
 import Highlighter from 'react-highlight-words';
 
+
+/**
+ * Functional component SearchDoctor that displays information about a doctor.
+ * It takes in props doctor of type Doctor and searchTerm of type string.
+ * Renders the doctor's avatar, name, specializations, and address with highlighting based on the searchTerm.
+ * Includes a link to view more details about the doctor.
+ */
 export const SearchDoctor: React.FC<{ doctor: Doctor, searchTerm: string }> = (props) => {
     const { doctor, searchTerm } = props;
     const address = doctor?.address || null;

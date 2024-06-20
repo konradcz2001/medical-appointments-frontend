@@ -8,6 +8,10 @@ import 'react-calendar/dist/Calendar.css';
 import { Leave } from '../../../models/Leave';
 import { Pagination } from '../../Utils/Pagination';
 
+/**
+ * Functional component for the VisitPage.
+ * Handles booking appointments, displaying leave calendar, and doctor leaves.
+ */
 export const VisitPage = () => {
     const location = useLocation();
     const { typesOfVisits, schedule } = location.state || {};

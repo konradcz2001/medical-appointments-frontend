@@ -3,6 +3,11 @@ import { Client } from '../../models/Client';
 import { VisitsManagementByClient } from './components/VisitsManagementByClient';
 import { useAuth } from '../../security/AuthContext';
 
+/**
+ * EditClientProfilePage component for managing client profile details.
+ * Fetches client data, allows editing first and last name, and saves changes.
+ * Displays loading state, success message, and error message accordingly.
+ */
 export const EditClientProfilePage = () => {
     const { user, token } = useAuth();
 

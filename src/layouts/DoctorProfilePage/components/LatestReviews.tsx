@@ -3,6 +3,15 @@ import React from "react";
 import ReviewModel from "../../../models/ReviewModel";
 import { Review } from "../../Utils/Review";
 
+
+/**
+ * Functional component that displays the latest reviews for a doctor.
+ * 
+ * @param reviews Array of ReviewModel objects representing the reviews to display
+ * @param doctorId The ID of the doctor for whom the reviews are being displayed
+ * @param mobile Boolean indicating if the component is being viewed on a mobile device
+ * @returns JSX element displaying the latest reviews and an option to view all reviews
+ */
 export const LatestReviews: React.FC<{
     reviews: ReviewModel[], doctorId: number | undefined, mobile: boolean
 }> = (props) => {

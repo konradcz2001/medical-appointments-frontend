@@ -2,6 +2,13 @@ import { useState } from 'react';
 import { StarsReview } from './StarsReview';
 import React from 'react';
 
+
+/**
+ * Functional component that renders a dropdown for leaving a review.
+ * Allows users to select a star rating and submit a review description.
+ * Uses state to manage star rating, display input, and review description.
+ * Calls the 'submitReview' function passed as a prop with the star rating and review description on submit.
+ */
 export const LeaveAReview: React.FC<{ submitReview: any }> = (props) => {
 
     const [starInput, setStarInput] = useState(0);

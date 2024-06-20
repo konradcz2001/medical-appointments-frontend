@@ -3,6 +3,10 @@ import { Pagination } from '../../Utils/Pagination';
 import { TypeOfVisit } from '../../../models/TypeOfVisit';
 import { useAuth } from '../../../security/AuthContext';
 
+/**
+ * Component for managing types of visits for a doctor.
+ * Handles adding and removing types of visits, pagination, and error handling.
+ */
 export const TypesOfVisitsManagement = (props: any) => {
     const [doctorTypesOfVisits, setDoctorTypesOfVisits] = useState<TypeOfVisit[]>([]);
     const [newTypeOfVisit, setNewTypeOfVisit] = useState<TypeOfVisit>(new TypeOfVisit(0, '', '0', '', 0, true, props.doctorId));
@@ -165,7 +169,7 @@ export const TypesOfVisitsManagement = (props: any) => {
                 </div>
                 <div className="mt-3 col-md-6 text-center">
                     <h4>Remove Type of Visit</h4>
-                    {doctorTypesOfVisits.length === 0 ? 
+                    {emptyPageError ? 
                         <p className="text">You have no types of visits yet</p> :
                     <p>
                         {indexOfFirstType + 1} to {lastItem} of {totalAmountOfTypesOfVisits} items:

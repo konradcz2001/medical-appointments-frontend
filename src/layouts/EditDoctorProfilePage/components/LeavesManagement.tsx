@@ -5,6 +5,10 @@ import 'react-calendar/dist/Calendar.css';
 import { Pagination } from '../../Utils/Pagination';
 import { useAuth } from "../../../security/AuthContext";
 
+/**
+ * Component for managing leaves, including adding and removing leaves, displaying a leave calendar,
+ * and handling pagination of leaves.
+ */
 export const LeavesManagement = (props: any) => {
     const [leaves, setLeaves] = useState<Leave[]>([]);
     const [startDateTime, setStartDateTime] = useState<string>('');

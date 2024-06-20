@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import { useAuth } from '../../security/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * Functional component for the login page.
+ * Handles user login by sending a POST request to the server with email and password.
+ * If successful, logs in the user and navigates to the home page.
+ * If there is an error, displays the error message.
+ */
 export const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+/**
+ * Functional component that renders a welcome message for booking a medical appointment.
+ * Includes a heading, description, and a button to search for doctors.
+ */
 export const Welcome = () => {
     return (
         <div className='p-5 mb-4 bg-dark header'>

@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../../security/AuthContext";
 
+/**
+ * Functional component for rendering client services section.
+ * Retrieves user authentication status using useAuth hook.
+ * Renders different content based on user authentication status.
+ */
 export const ClientServices = () => {
     const { user } = useAuth();
 

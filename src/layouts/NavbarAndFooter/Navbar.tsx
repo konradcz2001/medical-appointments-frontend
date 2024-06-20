@@ -2,6 +2,11 @@ import React from 'react';
 import { Link, NavLink } from "react-router-dom";
 import { useAuth } from '../../security/AuthContext';
 
+/**
+ * Functional component for rendering a navigation bar with dynamic content based on user authentication status and role.
+ * Utilizes React Router for navigation and AuthContext for user authentication.
+ * Handles user logout functionality and redirects to the home page upon logout.
+ */
 export const Navbar = () => {
   const { user, logout } = useAuth();
 

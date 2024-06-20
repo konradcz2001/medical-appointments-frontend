@@ -3,6 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Pagination } from '../../Utils/Pagination';
 import { useAuth } from "../../../security/AuthContext";
 
+/**
+ * Functional component for managing doctor specializations.
+ * Handles adding and removing specializations, pagination, and error handling.
+ */
 export const SpecializationsManagement= (props: any) => {
 
     const [doctorSpecializations, setDoctorSpecializations] = useState<Specialization[]>([]);

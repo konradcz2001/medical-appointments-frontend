@@ -1,7 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { SpinnerLoading } from '../Utils/SpinnerLoading';
 import { useAuth } from '../../security/AuthContext';
+
+/**
+ * Functional component ContactPage that handles sending an email message.
+ * Manages form state, submission, loading state, errors, and success messages.
+ * Utilizes useState and useEffect hooks for state management.
+ * Uses fetch API to send email data to the server.
+ * Displays loading spinner while waiting for the response.
+ * Renders a form with subject and message inputs, error and success messages, and a link to return to the home page.
+ */
 
 export const ContactPage = () => {
   const [subject, setSubject] = useState('');

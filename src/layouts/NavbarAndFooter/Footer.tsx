@@ -1,6 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+/**
+ * Functional component for rendering the footer of the Medical Appointments App.
+ * Displays company information and navigation links to Home and Search Doctors pages.
+ */
 export const Footer = () => {
     return (
         <div className='main-color'>

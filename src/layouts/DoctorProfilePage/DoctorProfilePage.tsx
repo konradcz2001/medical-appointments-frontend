@@ -9,6 +9,11 @@ import { useAuth } from "../../security/AuthContext";
 import { ScheduleComponent } from "./components/ScheduleComponent";
 
 
+/**
+ * Function component for displaying a doctor's profile page.
+ * Fetches doctor information and reviews from the server based on the doctorId.
+ * Displays doctor details, reviews, and allows users to make appointments.
+ */
 export const DoctorProfilePage = () => {
 
     const { user } = useAuth();

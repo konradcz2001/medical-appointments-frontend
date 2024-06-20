@@ -8,6 +8,14 @@ import { ScheduleManagement } from './components/ScheduleManagement';
 import { Schedule } from '../../models/Schedule';
 import { TypesOfVisitsManagement } from './components/TypesOfVisitsManagement';
 
+/**
+ * Functional component for editing a doctor's profile.
+ * Fetches the doctor's data, allows editing and saving the profile details, including avatar.
+ * Displays inputs for first name, last name, address, profile description, and avatar upload.
+ * Handles file upload, updates the doctor object, and sends a PUT request to update the profile on the server.
+ * Displays success or error messages accordingly.
+ * Utilizes components for managing schedule, types of visits, leaves, specializations, and visits by the doctor.
+ */
 export const EditDoctorProfilePage = (props: any) => {
     const { user, token } = useAuth();
 

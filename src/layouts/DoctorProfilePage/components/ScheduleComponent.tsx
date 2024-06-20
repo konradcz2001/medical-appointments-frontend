@@ -1,5 +1,11 @@
 import { Schedule } from "../../../models/Schedule";
 
+/**
+ * Functional component that renders a schedule table based on the provided props.
+ * It uses a Schedule model to populate the table with start and end times for each day of the week.
+ * If no schedule is provided in props, it creates a new Schedule instance.
+ * The formatTime function is used to format the time values before displaying them in the table.
+ */
 export const ScheduleComponent = (props: any) => {
     const schedule = props.schedule || new Schedule();
 

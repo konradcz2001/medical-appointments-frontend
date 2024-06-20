@@ -3,6 +3,12 @@ import { Pagination } from '../../Utils/Pagination';
 import { Visit } from "../../../models/Visit";
 import { useAuth } from '../../../security/AuthContext';
 
+
+/**
+ * Component for managing visits by a client, including fetching, displaying, and canceling visits.
+ * Uses state hooks for managing client visits, loading state, error handling, and success messages.
+ * Handles pagination of visits and provides a UI for canceling visits.
+ */
 export const VisitsManagementByClient = (props: any) => {
 
     const [clientVisits, setClientVisits] = useState<Visit[]>([]);

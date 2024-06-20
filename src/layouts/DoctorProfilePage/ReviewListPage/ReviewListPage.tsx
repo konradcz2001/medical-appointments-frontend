@@ -4,8 +4,12 @@ import { Pagination } from '../../Utils/Pagination';
 import { Review } from '../../Utils/Review';
 import { SpinnerLoading } from '../../Utils/SpinnerLoading';
 import { Link } from 'react-router-dom';
-import React from 'react';
 
+/**
+ * Functional component for displaying a list of reviews for a specific doctor.
+ * Fetches review data from the server based on the current page and reviews per page.
+ * Handles loading state, error state, pagination, and rendering of individual reviews.
+ */
 export const ReviewListPage = () => {
 
     const [reviews, setReviews] = useState<ReviewModel[]>([]);

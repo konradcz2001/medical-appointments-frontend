@@ -1,6 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+/**
+ * Functional component for the Register Page.
+ * Handles registration form submission, including input fields for first name, last name, email, password, and role selection.
+ * Displays error message if registration fails.
+ */
 export const RegisterPage = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -9,11 +14,6 @@ export const RegisterPage = () => {
   const [role, setRole] = useState<string>('CLIENT');
   const [error, setError] = useState<string | null>(null);
 
-  // useEffect(() => {
-  //   if (props.isLoggedIn) {
-  //     window.location.replace('/home');
-  //   }
-  // }, [props.isLoggedIn]);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

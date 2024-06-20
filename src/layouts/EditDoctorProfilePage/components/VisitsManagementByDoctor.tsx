@@ -3,6 +3,10 @@ import { Pagination } from '../../Utils/Pagination';
 import { Visit } from "../../../models/Visit";
 import { useAuth } from '../../../security/AuthContext';
 
+/**
+ * Component for managing visits by a doctor.
+ * Fetches and displays doctor's visits, allows canceling visits, and handles pagination.
+ */
 export const VisitsManagementByDoctor = (props: any) => {
 
     const [doctorVisits, setDoctorVisits] = useState<Visit[]>([]);

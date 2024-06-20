@@ -1,5 +1,10 @@
-import React from "react";
 
+
+/**
+ * AboutUs component displays information about finding doctors and trusting them on the website.
+ * It includes sections for "Who are you looking for?" and "Can you trust our doctors?" with relevant details.
+ * The component is responsive, adapting its layout for both desktop and mobile devices.
+ */
 export const AboutUs = () => {
     return (
         <div className="m-auto about-us-container">

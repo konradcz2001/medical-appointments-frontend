@@ -6,6 +6,10 @@ interface PaginationProps {
   paginate: (page: number) => void;
 }
 
+/**
+ * Functional component for pagination.
+ * Renders a pagination component based on the current page, total pages, and paginate function.
+ */
 export const Pagination: React.FC<PaginationProps> = (props) => {
   const pageNumbers: number[] = [];
 

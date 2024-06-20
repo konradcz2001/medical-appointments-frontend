@@ -1,5 +1,15 @@
 import React from "react";
 
+
+/**
+ * Functional component that renders a star rating based on the given rating and size.
+ * It calculates the number of full, half, and empty stars to display based on the rating provided.
+ * 
+ * @param rating The rating value (from 0 to 5) to display stars for.
+ * @param size The size of the stars to render.
+ * 
+ * @returns JSX element containing the star rating visualization.
+ */
 export const StarsReview: React.FC<{ rating: number, size: number }> = (props) => {
     
     let rating = props.rating;

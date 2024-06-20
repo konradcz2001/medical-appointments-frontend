@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Schedule } from "../../../models/Schedule";
 import { useAuth } from "../../../security/AuthContext";
 
+/**
+ * Functional component for managing a doctor's work schedule.
+ * Handles state for schedule, loading status, HTTP errors, and success messages.
+ * Utilizes useEffect to update schedule based on props, and handles input change and save actions.
+ * Displays a table for each day of the week with start and end time inputs, and a button to save changes.
+ */
 export const ScheduleManagement = (props: any) => {
     const [schedule, setSchedule] = useState<Schedule>(new Schedule());
     const [isLoading, setIsLoading] = useState(false);
