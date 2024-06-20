@@ -28,7 +28,7 @@ export const VisitsManagementByDoctor = (props: any) => {
             setEmptyPageError(false);
 
             try {
-                const response = await fetch(`http://localhost:8080/visits?isCancelled=false&doctorId=${props.doctorId}&page=${currentPage - 1}&size=${visitsPerPage}`, {
+                const response = await fetch(`${process.env.REACT_APP_API}visits?isCancelled=false&doctorId=${props.doctorId}&page=${currentPage - 1}&size=${visitsPerPage}`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -48,7 +48,7 @@ export const VisitsManagementByDoctor = (props: any) => {
                 setTotalPages(responseJson.totalPages);
 
                 for (const visitData of responseData) {
-                    const responseClient = await fetch(`http://localhost:8080/clients/${visitData.clientId}`, {
+                    const responseClient = await fetch(`${process.env.REACT_APP_API}clients/${visitData.clientId}`, {
                         method: 'GET',
                         headers: {
                             'Authorization': `Bearer ${token}`,
@@ -99,7 +99,7 @@ export const VisitsManagementByDoctor = (props: any) => {
         setHttpError(null);
 
         try {
-            const response = await fetch(`http://localhost:8080/visits/${visitId}`, {
+            const response = await fetch(`${process.env.REACT_APP_API}visits/${visitId}`, {
                 method: 'PATCH',
                 headers: {
                     'Authorization': `Bearer ${token}`,

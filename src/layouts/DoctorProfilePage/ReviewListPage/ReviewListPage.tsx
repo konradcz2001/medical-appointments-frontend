@@ -27,7 +27,7 @@ export const ReviewListPage = () => {
     useEffect(() => {
         const fetchDoctorReviewsData = async () => {
 
-            const reviewUrl: string = `http://localhost:8080/doctors/${doctorId}/reviews?page=${currentPage - 1}&size=${reviewsPerPage}`;
+            const reviewUrl: string = `${process.env.REACT_APP_API}doctors/${doctorId}/reviews?page=${currentPage - 1}&size=${reviewsPerPage}`;
 
             const responseReviews = await fetch(reviewUrl);
 

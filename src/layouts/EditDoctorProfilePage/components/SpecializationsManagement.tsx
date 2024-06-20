@@ -30,7 +30,7 @@ export const SpecializationsManagement= (props: any) => {
             setHttpError(null);
             setEmptyPageError(false);
 
-            const response = await fetch(`http://localhost:8080/doctors/${props.doctorId}/specializations`);
+            const response = await fetch(`${process.env.REACT_APP_API}doctors/${props.doctorId}/specializations`);
             if (response.ok) {
                 const loadedSpecializations: Specialization[] = await response.json();
                 setDoctorSpecializations(loadedSpecializations);
@@ -41,7 +41,7 @@ export const SpecializationsManagement= (props: any) => {
             }
 
 
-            const responseAll = await fetch(`http://localhost:8080/doctors/specializations?page=${currentPage - 1}&size=${specializationsPerPage}&sort=specialization`);
+            const responseAll = await fetch(`${process.env.REACT_APP_API}doctors/specializations?page=${currentPage - 1}&size=${specializationsPerPage}&sort=specialization`);
             if (responseAll.ok) {
                 const responseJson = await responseAll.json();
                 const responseData = responseJson.content;
@@ -87,7 +87,7 @@ export const SpecializationsManagement= (props: any) => {
         if (!specId) return;
 
         try {
-            const response = await fetch(`http://localhost:8080/doctors/${props.doctorId}/add-specializations`, {
+            const response = await fetch(`${process.env.REACT_APP_API}doctors/${props.doctorId}/add-specializations`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -115,7 +115,7 @@ export const SpecializationsManagement= (props: any) => {
         if (!specId) return;
 
         try {
-            const response = await fetch(`http://localhost:8080/doctors/${props.doctorId}/remove-specialization?id=${specId}`, {
+            const response = await fetch(`${process.env.REACT_APP_API}doctors/${props.doctorId}/remove-specialization?id=${specId}`, {
                 method: 'PATCH',
                 headers: {
                     'Authorization': `Bearer ${token}`,

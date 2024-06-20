@@ -19,7 +19,7 @@ export const EditClientProfilePage = () => {
     useEffect(() => {
         
         const fetchClient = async () => {
-            const baseUrl: string = `http://localhost:8080/clients/${user?.id}`;
+            const baseUrl: string = `${process.env.REACT_APP_API}clients/${user?.id}`;
 
             const response = await fetch(baseUrl, {
                 method: 'GET', 
@@ -84,7 +84,7 @@ export const EditClientProfilePage = () => {
         setHttpError(null);
 
         try {
-            const response = await fetch(`http://localhost:8080/clients/${user?.id}`, {
+            const response = await fetch(`${process.env.REACT_APP_API}clients/${user?.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

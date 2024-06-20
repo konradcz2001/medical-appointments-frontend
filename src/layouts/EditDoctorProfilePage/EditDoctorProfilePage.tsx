@@ -27,7 +27,7 @@ export const EditDoctorProfilePage = (props: any) => {
 
     useEffect(() => {
         const fetchDoctor = async () => {
-            const baseUrl: string = `http://localhost:8080/doctors/${user?.id}`;
+            const baseUrl: string = `${process.env.REACT_APP_API}doctors/${user?.id}`;
 
             const response = await fetch(baseUrl);
 
@@ -144,7 +144,7 @@ export const EditDoctorProfilePage = (props: any) => {
             tempDoctor.avatar = atob(avatar.split(",")[1]).split('').map(char => char.charCodeAt(0));
 
         try {
-            const response = await fetch(`http://localhost:8080/doctors/${user?.id}`, {
+            const response = await fetch(`${process.env.REACT_APP_API}doctors/${user?.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

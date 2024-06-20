@@ -30,7 +30,7 @@ export const DoctorProfilePage = () => {
 
     useEffect(() => {
         const fetchDoctor = async () => {
-            const baseUrl: string = `http://localhost:8080/doctors/${doctorId}`;
+            const baseUrl: string = `${process.env.REACT_APP_API}doctors/${doctorId}`;
 
             const response = await fetch(baseUrl);
 
@@ -89,7 +89,7 @@ export const DoctorProfilePage = () => {
 
     useEffect(() => {
         const fetchDoctorReviews = async () => {
-            const reviewUrl: string = `http://localhost:8080/doctors/${doctorId}/reviews`;
+            const reviewUrl: string = `${process.env.REACT_APP_API}doctors/${doctorId}/reviews`;
 
             const responseReviews = await fetch(reviewUrl);
 

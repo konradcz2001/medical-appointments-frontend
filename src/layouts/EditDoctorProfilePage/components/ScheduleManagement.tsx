@@ -35,7 +35,7 @@ export const ScheduleManagement = (props: any) => {
         setSuccess(null);
 
         try {
-            const response = await fetch(`http://localhost:8080/doctors/${props.doctorId}/schedule`, {
+            const response = await fetch(`${process.env.REACT_APP_API}doctors/${props.doctorId}/schedule`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',

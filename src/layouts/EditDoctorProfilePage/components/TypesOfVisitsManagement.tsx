@@ -28,7 +28,7 @@ export const TypesOfVisitsManagement = (props: any) => {
             setEmptyPageError(false);
 
             try {
-                const response = await fetch(`http://localhost:8080/doctors/${props.doctorId}/types-of-visits?page=${currentPage - 1}&size=${typesOfVisitsPerPage}&sort=type`);
+                const response = await fetch(`${process.env.REACT_APP_API}doctors/${props.doctorId}/types-of-visits?page=${currentPage - 1}&size=${typesOfVisitsPerPage}&sort=type`);
                 if (response.ok) {
                     const responseJson = await response.json();
                     const responseData = responseJson.content;
@@ -73,7 +73,7 @@ export const TypesOfVisitsManagement = (props: any) => {
         setSuccess(null);
 
         try {
-            const response = await fetch(`http://localhost:8080/doctors/${props.doctorId}/add-type-of-visit`, {
+            const response = await fetch(`${process.env.REACT_APP_API}doctors/${props.doctorId}/add-type-of-visit`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ export const TypesOfVisitsManagement = (props: any) => {
         if (!typeId) return;
 
         try {
-            const response = await fetch(`http://localhost:8080/doctors/${props.doctorId}/remove-type-of-visit?id=${typeId}`, {
+            const response = await fetch(`${process.env.REACT_APP_API}doctors/${props.doctorId}/remove-type-of-visit?id=${typeId}`, {
                 method: 'PATCH',
                 headers: {
                     'Authorization': `Bearer ${token}`,

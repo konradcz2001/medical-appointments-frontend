@@ -27,7 +27,7 @@ export const SearchDoctorsPage = () => {
 
     useEffect(() => {
         const fetchDoctors = async () => {
-            const baseUrl: string = "http://localhost:8080/doctors";
+            const baseUrl: string = `${process.env.REACT_APP_API}doctors`;
             const pagination: string = `page=${currentPage - 1}&size=${doctorsPerPage}`;
             let url: string;
 
@@ -101,7 +101,7 @@ export const SearchDoctorsPage = () => {
     useEffect(() => {
 
         const fetchSpecializations = async () => {
-            const url: string = "http://localhost:8080/doctors/specializations?sort=specialization";
+            const url: string = `${process.env.REACT_APP_API}doctors/specializations?sort=specialization`;
 
             const response = await fetch(url);
 

@@ -39,7 +39,7 @@ export const VisitPage = () => {
             setHttpError(null);
             setEmptyPageError(false);
 
-            const response = await fetch(`http://localhost:8080/doctors/${doctorId}/leaves?page=${currentPage - 1}&size=${leavesPerPage}&sort=startDate`);
+            const response = await fetch(`${process.env.REACT_APP_API}doctors/${doctorId}/leaves?page=${currentPage - 1}&size=${leavesPerPage}&sort=startDate`);
             if (response.ok) {
                 const responseJson = await response.json();
                 const responseData = responseJson.content;
@@ -95,7 +95,7 @@ export const VisitPage = () => {
         };
 
         try {
-            const response = await fetch(`http://localhost:8080/visits`, {
+            const response = await fetch(`${process.env.REACT_APP_API}visits`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

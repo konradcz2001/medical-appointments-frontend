@@ -28,7 +28,7 @@ export const ContactPage = () => {
 
 
     try {
-      const response = await fetch('http://localhost:8080/email', {
+      const response = await fetch(`${process.env.REACT_APP_API}email`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

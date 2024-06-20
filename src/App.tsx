@@ -16,6 +16,8 @@ import PrivateRoute from './security/PrivateRoute';
 import PublicRoute from './security/PublicRoute';
 import { VisitPage } from './layouts/DoctorProfilePage/VisitPage/VisitPage';
 
+
+
 export const App = () => {
   return (
     <AuthProvider>

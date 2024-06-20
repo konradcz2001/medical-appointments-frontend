@@ -31,7 +31,7 @@ export const LeavesManagement = (props: any) => {
             setHttpError(null);
             setEmptyPageError(false);
             
-            const response = await fetch(`http://localhost:8080/doctors/${props.doctorId}/leaves?page=${currentPage - 1}&size=${leavesPerPage}&sort=startDate`);
+            const response = await fetch(`${process.env.REACT_APP_API}doctors/${props.doctorId}/leaves?page=${currentPage - 1}&size=${leavesPerPage}&sort=startDate`);
             if (response.ok) {
                 const responseJson = await response.json();
                 const responseData = responseJson.content;
@@ -78,7 +78,7 @@ export const LeavesManagement = (props: any) => {
         };
 
         try {
-            const response = await fetch(`http://localhost:8080/doctors/${props.doctorId}/add-leave`, {
+            const response = await fetch(`${process.env.REACT_APP_API}doctors/${props.doctorId}/add-leave`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -107,7 +107,7 @@ export const LeavesManagement = (props: any) => {
         if (!leaveId) return;
 
         try {
-            const response = await fetch(`http://localhost:8080/doctors/${props.doctorId}/remove-leave?id=${leaveId}`, {
+            const response = await fetch(`${process.env.REACT_APP_API}doctors/${props.doctorId}/remove-leave?id=${leaveId}`, {
                 method: 'PATCH',
                 headers: {
                     'Authorization': `Bearer ${token}`,
