@@ -25,3 +25,5 @@ yarn-error.log*
 
 .env
 /ssl
+Dockerfile
+docker-compose.yml
