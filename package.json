@@ -18,7 +18,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "craco start",
+    "start": "cross-env HTTPS=true SSL_CRT_FILE=./ssl/cloudflare.pem SSL_KEY_FILE=./ssl/cloudflare.key craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
@@ -47,6 +47,7 @@
     "@types/react-highlight-words": "^0.20.0",
     "@types/react-router-dom": "^5.3.3",
     "buffer": "^6.0.3",
+    "cross-env": "^7.0.3",
     "crypto-browserify": "^3.12.0",
     "process": "^0.11.10",
     "stream-browserify": "^3.0.0",
