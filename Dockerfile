@@ -22,4 +22,4 @@ RUN npm install -g serve
 
 EXPOSE 3000
 
-CMD ["serve", "-s", "build", "-l", "3000", "--ssl-cert", "/app/ssl/cloudflare.pem", "--ssl-key", "/app/ssl/cloudflare.key"]
+CMD ["serve", "-s", "build", "-l", "3000"]
