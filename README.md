@@ -7,16 +7,16 @@ This is the frontend layer for the [Medical Appointments](https://medical-appoin
 
 ## Table of Contents
 
-- [Project Description](#:page_facing_up:-project-description)
-- [Features](#:sparkles:-features)
-- [Technologies Used](#:hammer_and_wrench:-technologies-used-:leftwards_arrow_with_hook:)
-- [API Documentation](#-api-documentation-)
-- [Hosting](#hosting)
-- [Sample Login Data](#:closed_lock_with_key:-sample-login-data-:leftwards_arrow_with_hook:)
-- [Visual Examples](#:movie_camera:-visual-examples-:leftwards_arrow_with_hook:)
-- [Setup Instructions](#:gear:-setup-instructions-:leftwards_arrow_with_hook:)
-- [Contributing](#:handshake:-contributing-:leftwards_arrow_with_hook:)
-- [License](#:scroll:-license-:leftwards_arrow_with_hook:)
+- [Project Description](#page_facing_up-project-description)
+- [Features](#sparkles-features)
+- [Technologies Used](#hammer_and_wrench-technologies-used-leftwards_arrow_with_hook)
+- [API Documentation](#books-api-documentation-leftwards_arrow_with_hook)
+- [Hosting](#globe_with_meridians-hosting-leftwards_arrow_with_hook)
+- [Sample Login Data](#closed_lock_with_key-sample-login-data-leftwards_arrow_with_hook)
+- [Visual Examples](#movie_camera-visual-examples-leftwards_arrow_with_hook)
+- [Setup Instructions](#gear-setup-instructions-leftwards_arrow_with_hook)
+- [Contributing](#handshake-contributing-leftwards_arrow_with_hook)
+- [License](#scroll-license-leftwards_arrow_with_hook)
 
 ## :page_facing_up: Project Description
 
@@ -71,40 +71,40 @@ Here are some sample login credentials that you can use to test the application:
 ## :movie_camera: Visual Examples [:leftwards_arrow_with_hook:](#table-of-contents)
 
 - [Doctor searching](#doctor-searching)
-- [Booking an appointment](#booking-an-appointment-:leftwards_arrow_with_hook:)
-- [Updating profile data](#updating-profile-data-)
-- [Doctor's schedule update](#doctors-schedule-update-:leftwards_arrow_with_hook:)
-- [Doctor's type of visit update](#doctors-type-of-visit-update-:leftwards_arrow_with_hook:)
-- [Doctor's leave update](#doctors-leave-update-:leftwards_arrow_with_hook:)
-- [Doctor's specialization update and visit cancellation](#doctors-specialization-update-and-visit-cancellation-:leftwards_arrow_with_hook:)
-- [Sending an inquiry](#sending-an-inquiry-:leftwards_arrow_with_hook:)
-- [In mailbox](#in-mailbox-:leftwards_arrow_with_hook:)
+- [Booking an appointment](#booking-an-appointment-leftwards_arrow_with_hook)
+- [Updating profile data](#updating-profile-data-leftwards_arrow_with_hook)
+- [Doctor's schedule update](#doctors-schedule-update-leftwards_arrow_with_hook)
+- [Doctor's type of visit update](#doctors-type-of-visit-update-leftwards_arrow_with_hook)
+- [Doctor's leave update](#doctors-leave-update-leftwards_arrow_with_hook)
+- [Doctor's specialization update and visit cancellation](#doctors-specialization-update-and-visit-cancellation-leftwards_arrow_with_hook)
+- [Sending an inquiry](#sending-an-inquiry-leftwards_arrow_with_hook)
+- [In mailbox](#in-mailbox-leftwards_arrow_with_hook)
 
 ### Doctor searching
 ![Support via Gif](readme_assets/searching.gif)
 
-### Booking an appointment [:leftwards_arrow_with_hook:](#:movie_camera:-visual-examples-:leftwards_arrow_with_hook:)
+### Booking an appointment [:leftwards_arrow_with_hook:](#movie_camera-visual-examples-leftwards_arrow_with_hook)
 ![Support via Gif](readme_assets/booking_appointment.gif)
 
-### Updating profile data [:leftwards_arrow_with_hook:](#:movie_camera:-visual-examples-:leftwards_arrow_with_hook:)
+### Updating profile data [:leftwards_arrow_with_hook:](#movie_camera-visual-examples-leftwards_arrow_with_hook)
 ![Support via Gif](readme_assets/profile_management.gif)
 
-### Doctor's schedule update [:leftwards_arrow_with_hook:](#:movie_camera:-visual-examples-:leftwards_arrow_with_hook:)
+### Doctor's schedule update [:leftwards_arrow_with_hook:](#movie_camera-visual-examples-leftwards_arrow_with_hook)
 ![Support via Gif](readme_assets/schedule_update.gif)
 
-### Doctor's type of visit update [:leftwards_arrow_with_hook:](#:movie_camera:-visual-examples-)
+### Doctor's type of visit update [:leftwards_arrow_with_hook:](#movie_camera-visual-examples-leftwards_arrow_with_hook)
 ![Support via Gif](readme_assets/type_of_visit_update.gif)
 
-### Doctor's leave update [:leftwards_arrow_with_hook:](#:movie_camera:-visual-examples-:leftwards_arrow_with_hook:)
+### Doctor's leave update [:leftwards_arrow_with_hook:](#movie_camera-visual-examples-leftwards_arrow_with_hook)
 ![Support via Gif](readme_assets/leave_update.gif)
 
-### Doctor's specialization update and visit cancellation [:leftwards_arrow_with_hook:](#:movie_camera:-visual-examples-:leftwards_arrow_with_hook:)
+### Doctor's specialization update and visit cancellation [:leftwards_arrow_with_hook:](#movie_camera-visual-examples-leftwards_arrow_with_hook)
 ![Support via Gif](readme_assets/specialization_update_visit_cancel.gif)
 
-### Sending an inquiry [:leftwards_arrow_with_hook:](#:movie_camera:-visual-examples-:leftwards_arrow_with_hook:)
+### Sending an inquiry [:leftwards_arrow_with_hook:](#movie_camera-visual-examples-leftwards_arrow_with_hook)
 ![Support via Gif](readme_assets/contact.gif)
 
-### In mailbox [:leftwards_arrow_with_hook:](#:movie_camera:-visual-examples-:leftwards_arrow_with_hook:)
+### In mailbox [:leftwards_arrow_with_hook:](#movie_camera-visual-examples-leftwards_arrow_with_hook)
 ![Support via Png](readme_assets/gmail.png)
 
 ## :gear: Setup Instructions [:leftwards_arrow_with_hook:](#table-of-contents)
