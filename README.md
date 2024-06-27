@@ -1,70 +1,137 @@
-# Getting Started with Create React App
+# Medical Appointments Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the frontend layer for the [Medical Appointments](https://medical-appointments.pl) application. 
+<br>You can see backend GitHub Repository [here](https://github.com/konradcz2001/medical-appointments-backend).
 
-## Available Scripts
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [Project Description](#project-description)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [API Documentation](#api-documentation)
+- [Hosting](#hosting)
+- [Sample Login Data](#sample-login-data)
+- [Visual Examples](#visual-examples)
+- [Setup Instructions](#setup-instructions)
+- [Contributing](#contributing)
+- [License](#license)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Project Description
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+This project is a web application built with React and TypeScript. It includes various features such as user authentication, profile management, and visits arrangement. The application is configured using CRACO for custom Webpack configurations.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
+- The application supports user authentication, allowing users to log in and manage their profiles.
+- Users can manage their profiles, including updating personal information and viewing their activity.
+- The application allows users to arrange medical visits, making it easier to schedule appointments with doctors.
+- The frontend interacts with a backend API to fetch and manage data. The API documentation is available via Swagger.
+- The project provides sample login credentials for different types of users (Doctor, Client, Admin) to facilitate testing.
+- The application includes a rating system for doctors. Clients can leave reviews, and doctors can verify their credentials, which are then checked by the team. Verified doctors receive a verification stamp. 
+- If you have any additional questions, the app allows you to ask them.
 
-### `npm run build`
+## Technologies Used
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- React
+- Typescript
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## API Documentation
+The application interacts with a backend API to fetch and manage data. 
+The API documentation is available via Swagger. You can access it [here](https://api.medical-appointments.pl/swagger-ui/index.html).
+<br><br>For some operations you must log in and provide a token. You can log in with [Sample Login Data](#sample-login-data).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Support via Gif](readme_assets/api.gif)
 
-### `npm run eject`
+Swagger cannot distinguish endpoints with the same path and http method, so some GET endpoints are combined into one with all parameters required. For more details, see the code.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Hosting
+You can access the application via the links:
+##### The entire application with frontend:<br> https://medical-appointments.pl
+##### Swagger documentation for backend:<br> https://api.medical-appointments.pl/swagger-ui/index.html
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Sample Login Data
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Here are some sample login credentials that you can use to test the application:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **Doctor User**
+   - Email: `doctor@doctor`
+   - Password: `Doctor!123`
+<br><br>
+- **Client User**
+   - Email: `client@client`
+   - Password: `Client!123`
+     <br><br>
 
-## Learn More
+- **Admin User**
+   - Email: `admin@admin`
+   - Password: `admin`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Visual Examples
+#### Doctor searching:
+![Support via Gif](readme_assets/searching.gif)
+#### Booking an appointment:
+![Support via Gif](readme_assets/booking_appointment.gif)
+#### Updating profile data:
+![Support via Gif](readme_assets/profile_management.gif)
+#### Doctor's schedule update:
+![Support via Gif](readme_assets/schedule_update.gif)
+#### Doctor's type of visit update:
+![Support via Gif](readme_assets/type_of_visit_update.gif)
+#### Doctor's leave update:
+![Support via Gif](readme_assets/leave_update.gif)
+#### Doctor's specialization update and visit cancellation:
+![Support via Gif](readme_assets/specialization_update_visit_cancel.gif)
+#### Sending a inquiry:
+![Support via Gif](readme_assets/contact.gif)
+#### In mailbox:
+![Support via Png](readme_assets/gmail.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Setup Instructions
 
-### Code Splitting
+#### Installation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. Clone the repository:
 
-### Analyzing the Bundle Size
+    ```bash
+    git clone https://github.com/konradcz2001/medical-appointments-frontend.git
+    cd medical-appointments-frontend
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. Add to the `.env` file:
+    - Add new variable:
+    ```bash
+    REACT_APP_API='https://api.medical-appointments.pl/'
+    ```
+    - Or if you are using local backend then set it up to your URI, e.g.
+    ```bash
+    REACT_APP_API='http://localhost:8080/'
+    ```
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+3. Install dependencies:
+    ```bash
+    npm install
+    ```
 
-### Advanced Configuration
+4. Start the development server:
+    ```bash
+    npm start
+    ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#### Usage
 
-### Deployment
+After starting the development server, you can access the application at `http://localhost:3000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+#### Running Tests
 
-### `npm run build` fails to minify
+To run tests, use the following command:
+```bash
+npm test
+```
+## Contributing
+Contributions are welcome! Please fork the repository and create a pull request with your changes. You can also contact me: konradcz2001@gmail.com
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+This project is licensed under the [MIT License](LICENSE).<br><br>
+

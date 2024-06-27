@@ -61,7 +61,7 @@ export const ContactPage = () => {
   if (isLoading) {
     return (
       <>
-        <div className='d-flex justify-content-center m-4'>Please wait, this may take a while (around 20 seconds)</div>
+        <div className='d-flex justify-content-center m-4'>Please wait, this may take a while</div>
         <SpinnerLoading />
       </>
     )

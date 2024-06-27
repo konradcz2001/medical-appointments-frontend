@@ -28,3 +28,7 @@ dist
 # Ignore system files
 .DS_Store
 Thumbs.db
+
+
+# Ignore readme gifs
+readme_assets
