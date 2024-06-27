@@ -1,4 +1,5 @@
-![Support via Gif](public/favicon.ico)
+<img align="right" src="./public/logo192.png">
+
 # Medical Appointments Frontend
 
 This is the frontend layer for the [Medical Appointments](https://medical-appointments.pl) application. 
