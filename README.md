@@ -1,4 +1,4 @@
-<img align="right" src="./public/logo192.png">
+<a href="#"><img align="right" src="./public/logo192.png"></a>
 
 # Medical Appointments Frontend
 
@@ -15,6 +15,7 @@ This is the frontend layer for the [Medical Appointments](https://medical-appoin
 - [Hosting](#globe_with_meridians-hosting-leftwards_arrow_with_hook)
 - [Sample Login Data](#closed_lock_with_key-sample-login-data-leftwards_arrow_with_hook)
 - [Visual Examples](#movie_camera-visual-examples-leftwards_arrow_with_hook)
+- [Class Diagrams](#bar_chart-class-diagrams-leftwards_arrow_with_hook)
 - [Setup Instructions](#gear-setup-instructions-leftwards_arrow_with_hook)
 - [Contributing](#handshake-contributing-leftwards_arrow_with_hook)
 - [License](#scroll-license-leftwards_arrow_with_hook)
@@ -107,6 +108,24 @@ Here are some sample login credentials that you can use to test the application:
 
 ### In mailbox [:leftwards_arrow_with_hook:](#movie_camera-visual-examples-leftwards_arrow_with_hook)
 ![Support via Png](readme_assets/gmail.png)
+
+
+
+## :bar_chart: Class Diagrams [:leftwards_arrow_with_hook:](#table-of-contents)
+
+- [Src Folder](#src-folder)
+- [Layouts Folder](#layouts-folder-leftwards_arrow_with_hook)
+- [Models Folder](#models-folder-leftwards_arrow_with_hook)
+
+### [Src Folder](src)
+![Support via Png](readme_assets/class_diagrams/src_diagram.png)
+
+### [Layouts Folder](src/layouts) [:leftwards_arrow_with_hook:](#bar_chart-class-diagrams-leftwards_arrow_with_hook)
+![Support via Png](readme_assets/class_diagrams/layouts_diagram.png)
+
+### [Models Folder](src/models) [:leftwards_arrow_with_hook:](#bar_chart-class-diagrams-leftwards_arrow_with_hook)
+![Support via Png](readme_assets/class_diagrams/models_diagram.png)
+
 
 ## :gear: Setup Instructions [:leftwards_arrow_with_hook:](#table-of-contents)
 
