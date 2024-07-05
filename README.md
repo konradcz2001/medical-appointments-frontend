@@ -1,9 +1,26 @@
 <a href="#"><img align="right" src="./public/logo192.png"></a>
 
+
+
+
+
+
 # Medical Appointments Frontend
 
 This is the frontend layer for the [Medical Appointments](https://medical-appointments.pl) application. 
 <br>You can see backend GitHub Repository [here](https://github.com/konradcz2001/medical-appointments-backend).
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## Table of Contents
@@ -18,11 +35,33 @@ This is the frontend layer for the [Medical Appointments](https://medical-appoin
 - [Class Diagrams](#bar_chart-class-diagrams-leftwards_arrow_with_hook)
 - [Setup Instructions](#gear-setup-instructions-leftwards_arrow_with_hook)
 - [Contributing](#handshake-contributing-leftwards_arrow_with_hook)
-- [License](#scroll-license-leftwards_arrow_with_hook)
+
+
+[//]: # "- [License](#scroll-license-leftwards_arrow_with_hook)"
+
+
+
+
+
+
+
+
+
+
 
 ## :page_facing_up: Project Description
 
 This project is a web application built with React and TypeScript. It includes various features such as user authentication, profile management, and visits arrangement. The application is configured using CRACO for custom Webpack configurations.
+
+
+
+
+
+
+
+
+
+
 
 
 ## :sparkles: Features
@@ -34,10 +73,39 @@ This project is a web application built with React and TypeScript. It includes v
 - The application includes a rating system for doctors. Clients can leave reviews, and doctors can verify their credentials, which are then checked by the team. Verified doctors receive a verification stamp. 
 - If you have any additional questions, the app allows you to ask them.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## :hammer_and_wrench: Technologies Used [:leftwards_arrow_with_hook:](#table-of-contents)
 
 - React
 - Typescript
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## :books: API Documentation [:leftwards_arrow_with_hook:](#table-of-contents)
 The application interacts with a backend API to fetch and manage data. 
@@ -48,10 +116,40 @@ The API documentation is available via Swagger. You can access it [here](https:/
 
 Swagger cannot distinguish endpoints with the same path and http method, so some GET endpoints are combined into one with all parameters required. For more details, see the code.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## :globe_with_meridians: Hosting [:leftwards_arrow_with_hook:](#table-of-contents)
 You can access the application via the links:
 ##### The entire application with frontend:<br> https://medical-appointments.pl
 ##### Swagger documentation for backend:<br> https://api.medical-appointments.pl/swagger-ui/index.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## :closed_lock_with_key: Sample Login Data [:leftwards_arrow_with_hook:](#table-of-contents)
 
@@ -69,6 +167,20 @@ Here are some sample login credentials that you can use to test the application:
 - **Admin User**
    - Email: `admin@admin`
    - Password: `admin`
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## :movie_camera: Visual Examples [:leftwards_arrow_with_hook:](#table-of-contents)
 
@@ -111,7 +223,24 @@ Here are some sample login credentials that you can use to test the application:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## :bar_chart: Class Diagrams [:leftwards_arrow_with_hook:](#table-of-contents)
+Open the image in a new tab to see details.
+
 
 - [Src Folder](#src-folder)
 - [Layouts Folder](#layouts-folder-leftwards_arrow_with_hook)
@@ -125,6 +254,20 @@ Here are some sample login credentials that you can use to test the application:
 
 ### [Models Folder](src/models) [:leftwards_arrow_with_hook:](#bar_chart-class-diagrams-leftwards_arrow_with_hook)
 ![Support via Png](readme_assets/class_diagrams/models_diagram.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## :gear: Setup Instructions [:leftwards_arrow_with_hook:](#table-of-contents)
@@ -169,9 +312,40 @@ To run tests, use the following command:
 ```bash
 npm test
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## :handshake: Contributing [:leftwards_arrow_with_hook:](#table-of-contents)
 Contributions are welcome! Please fork the repository and create a pull request with your changes. You can also contact me: konradcz2001@gmail.com
 
-## :scroll: License [:leftwards_arrow_with_hook:](#table-of-contents)
-This project is licensed under the [MIT License](LICENSE).<br><br>
 
+
+
+
+
+
+
+
+
+
+
+
+
+[//]: # "## :scroll: License [:leftwards_arrow_with_hook:](#table-of-contents)"
+[//]: # "This project is licensed under the [MIT License](LICENSE)."
+
+
+
+
+
+<br><br>
